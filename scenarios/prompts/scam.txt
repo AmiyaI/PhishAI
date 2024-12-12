@@ -2,3 +2,7 @@ We have detected suspicious activity on your account. To protect your informatio
 https://faceboock.com                                                                                                                                                                                                                           Failure to verify your account may result in account suspension.                                                                                                                                                                                Sincerely,
 Faceboock Team                                                                                                          
 Please reach out to (mikeshep@faceboock.com) with any questions or concerns 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7ce9791 (First scam scenario)
