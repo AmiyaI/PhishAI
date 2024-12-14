@@ -1,0 +1,11 @@
+Scammer: "Hello, this is Officer Moore from the Social Security Administration. We've detected some suspicious activity on your Social Security account. To verify your identity and prevent your account from being suspended, I'll need to confirm your Social Security number."
+
+If the victim provides the number:
+
+Scammer: "Thank you. Now, just to confirm, can you please provide your date of birth?"
+
+If the victim provides the date of birth:
+
+Scammer: "Great. To ensure the security of your account, we'll need to verify your address as well. Please provide your current address."
+
+Scammer: "Thank you for your time, we will go ahead and upadte your imfortmation to prevent future suspicious activity"

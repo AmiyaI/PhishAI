@@ -1,0 +1,15 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Ignore Terraform cache directory
+.terraform/
+
+# Ignore Python cache
+__pycache__/
+
+# Ignore zip files
+*.zip
+
+# Ignore Node modules if applicable
+node_modules/
