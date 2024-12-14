@@ -12,5 +12,8 @@ __pycache__/
 # Ignore zip files
 *.zip
 
-# Ignore Node modules if applicable
+# Node modules
 node_modules/
+
+# Build files
+build/
