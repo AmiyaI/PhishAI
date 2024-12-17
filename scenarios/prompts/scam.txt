@@ -1,6 +1,6 @@
 We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:                                                                                                          
 https://faceboock.com                                                                                                                                                                                                                           Failure to verify your account may result in account suspension.                                                                                                                                                                                Sincerely,
-Faceboock Team                                                                                                          
+Sincerely, Faceboock Team                                                                                                          
 Please reach out to (mikeshep@faceboock.com) with any questions or concerns 
 <<<<<<< HEAD
 =======
