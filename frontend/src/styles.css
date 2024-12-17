@@ -1,15 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  h1 {
-    color: #333;
-    text-align: center;
-  }
-  
-  p {
-    text-align: center;
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
