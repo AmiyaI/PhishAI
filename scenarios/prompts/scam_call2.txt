@@ -8,4 +8,4 @@ If the victim provides the date of birth:
 
 Scammer: "Great. To ensure the security of your account, we'll need to verify your address as well. Please provide your current address."
 
-Scammer: "Thank you for your time, we will go ahead and update your imfortmation to prevent future suspicious activity"
+Scammer: "Thank you for your time, we will go ahead and update your infortmation to prevent future suspicious activity"
