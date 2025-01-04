@@ -8,26 +8,27 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Mock API response
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      const response = await fetch("https://your-api-endpoint.amazonaws.com/analyze-url", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url }),
-      });
-      const data = await response.json();
-      setResult(data);
-    } catch (error) {
-      console.error("Error:", error);
-      setResult({ error: "Failed to analyze URL" });
-    } finally {
-      setLoading(false);
-    }
+    // Simulate a network request delay
+    setTimeout(() => {
+      try {
+        // Simulated mock response
+        const data = {
+          status: "Safe",
+          confidence: 98,
+        };
+        setResult(data);
+      } catch (error) {
+        console.error("Error:", error);
+        setResult({ error: "Failed to analyze URL" });
+      } finally {
+        setLoading(false);
+      }
+    }, 2000); // 2-second delay to simulate API call
   };
 
   return (
