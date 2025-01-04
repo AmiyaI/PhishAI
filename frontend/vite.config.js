@@ -3,14 +3,11 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  root: ".", // Root directory where index.html is located
+  root: ".", // Ensure this points to your root folder containing index.html
   build: {
-    outDir: "dist", // Build output folder
+    outDir: "dist", // Ensure this matches your Amplify build settings
     rollupOptions: {
-      input: "index.html", // Specify entry point
+      input: "./index.html", // Ensure index.html is correctly referenced
     },
-  },
-  server: {
-    port: 3000,
   },
 });
