@@ -1,13 +1,16 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import path from "path"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
 
 export default defineConfig({
   plugins: [react()],
-  root: ".", // Ensure this points to your root folder containing index.html
-  build: {
-    outDir: "dist", // Ensure this matches your Amplify build settings
-    rollupOptions: {
-      input: "./index.html", // Ensure index.html is correctly referenced
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
-});
+  build: {
+    outDir: 'dist',
+    sourcemap: true
+  }
+})
