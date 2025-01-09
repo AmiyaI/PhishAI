@@ -262,6 +262,85 @@ const App = () => {
         </div>
       </div>
 
+       {/* Stats Section */}
+       <div className={`py-16 border-b border-purple-500/30 ${
+        theme === 'dark' ? 'bg-black/50' : 'bg-purple-50'
+      }`}>
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { value: "95%", label: "Success Rate", description: "Training Effectiveness" },
+              { value: "5+", label: "AI Models", description: "Integrated Services" },
+              { value: "1000+", label: "Scenarios", description: "Training Templates" }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl font-bold text-purple-400 mb-2">{stat.value}</div>
+                <div className={`text-xl mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+                  {stat.label}
+                </div>
+                <div className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+                  {stat.description}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className={`py-16 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+        <div className="container mx-auto px-4">
+          <h2 className={`text-3xl font-bold text-center mb-12 ${
+            theme === 'dark' ? 'text-white' : 'text-gray-800'
+          }`}>
+            Key <span className="text-purple-400">Features</span>
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              {
+                icon: <Shield className="w-8 h-8 text-purple-400" />,
+                title: "Enterprise-Grade Training",
+                description: "Customized phishing simulations based on your industry and company size."
+              },
+              {
+                icon: <Brain className="w-8 h-8 text-purple-400" />,
+                title: "Adaptive Learning",
+                description: "AI-driven scenarios that evolve based on employee performance."
+              },
+              {
+                icon: <Users className="w-8 h-8 text-purple-400" />,
+                title: "Progress Tracking",
+                description: "Detailed analytics on employee improvement and vulnerability areas."
+              },
+              {
+                icon: <Cloud className="w-8 h-8 text-purple-400" />,
+                title: "Educational Resources",
+                description: "Comprehensive learning materials and security best practices."
+              }
+            ].map((feature, index) => (
+              <Card key={index} className={`${
+                theme === 'dark' 
+                  ? 'bg-gray-900 border-purple-500 hover:border-purple-400' 
+                  : 'bg-white border-purple-200 hover:border-purple-300'
+              } transition-colors`}>
+                <CardHeader>
+                  <div className="mb-4">{feature.icon}</div>
+                  <CardTitle className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
       {/* Interactive Training Section */}
       <div className={`py-16 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
         <div className="container mx-auto px-4">
