@@ -464,6 +464,56 @@ const App = () => {
         </Alert>
       </div>
     )}
+    
+    {/* Tech Stack */}
+    <div className={`py-16 border-t border-b border-purple-500/30 ${
+        theme === 'dark' ? 'bg-gray-900/50' : 'bg-purple-50'
+      }`}>
+        <div className="container mx-auto px-4">
+          <h2 className={`text-3xl font-bold text-center mb-12 ${
+            theme === 'dark' ? 'text-white' : 'text-gray-800'
+          }`}>
+            Powered by <span className="text-purple-400">Advanced Tech</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Terminal className="w-8 h-8 text-purple-400" />,
+                title: "AWS Services",
+                items: ["Bedrock", "SageMaker", "Polly", "Amplify"]
+              },
+              {
+                icon: <Server className="w-8 h-8 text-purple-400" />,
+                title: "Infrastructure",
+                items: ["Terraform", "GitHub Actions", "CI/CD Pipelines"]
+              },
+              {
+                icon: <Brain className="w-8 h-8 text-purple-400" />,
+                title: "AI Features",
+                items: ["NLP Models", "Voice Synthesis", "Image Generation"]
+              }
+            ].map((tech, index) => (
+              <div key={index} className={`text-center p-6 rounded-lg border ${
+                theme === 'dark'
+                  ? 'bg-black/40 border-purple-500/50'
+                  : 'bg-white border-purple-200'
+              }`}>
+                <div className="flex justify-center mb-4">{tech.icon}</div>
+                <h3 className={`text-xl font-semibold mb-4 ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-800'
+                }`}>{tech.title}</h3>
+                <ul className="space-y-2">
+                  {tech.items.map((item, idx) => (
+                    <li key={idx} className={
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
     {/* Footer */}
     <footer className={`${
