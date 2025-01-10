@@ -136,7 +136,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
             
             <div className={`mt-6 pt-4 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
               <p>
-                Please reach out to <a href="#" className="text-blue-500 hover:underline">mikeshep@faceboock.com</a> with any questions or concerns
+                Please reach out to <a href="#" className="text-blue-500 hover:underline">davebunson@faceboock.com</a> with any questions or concerns
               </p>
               <p className="mt-2">
                 This is an automated message. Please do not reply directly to this email.
