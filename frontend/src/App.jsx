@@ -126,7 +126,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
             
             <div className={`mt-6 pt-4 border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
               <p>Sincerely,</p>
-              <p className="font-semibold">Faceboock Security Team</p>
+              <p className="font-semibold">Facebook Security Team</p>
               <img 
                 src="/images/facebook-logo.png" 
                 alt="Faceboock Security" 
