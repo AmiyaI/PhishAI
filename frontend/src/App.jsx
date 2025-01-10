@@ -68,7 +68,10 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
               Account Security Alert
             </h4>
             <p className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
-              We have detected suspicious activity on your account. Immediate action required...
+            We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:                                                                                                          
+            https://faceboock.com                                                                                                                                                                                                                           Failure to verify your account may result in account suspension.                                                                                                                                                                                Sincerely,
+            Faceboock Team                                                                                                          
+            Please reach out to (mikeshep@faceboock.com) with any questions or concerns 
             </p>
             <div className="mt-4 space-x-4">
               <button 
@@ -529,7 +532,7 @@ const App = () => {
           </button>
         </div>
       </div>
-      
+
     {/* Footer */}
     <footer className={`${
       theme === 'dark'
