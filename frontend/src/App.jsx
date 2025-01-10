@@ -128,7 +128,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
               <p>Sincerely,</p>
               <p className="font-semibold">Faceboock Security Team</p>
               <img 
-                src="/api/placeholder/120/40" 
+                src="/images/facebook-logo.png" 
                 alt="Faceboock Security" 
                 className="mt-2"
               />
