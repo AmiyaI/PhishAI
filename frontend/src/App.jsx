@@ -48,47 +48,70 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
     </div>
 
     {/* Current Scenario */}
-    <div className={`p-6 rounded-lg border ${
-      theme === 'dark' 
-        ? 'bg-gray-900 border-purple-500' 
-        : 'bg-white border-purple-200'
-    }`}>
-      <div className="space-y-4">
-        {activeDemo === 'email' && (
-          <div className="border border-gray-700 p-4 rounded">
-            <div className="flex justify-between items-center mb-4">
-              <span className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}>
-                From: security@faceboock.com
-              </span>
-              <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                10:45 AM
-              </span>
-            </div>
-            <h4 className={`font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-              Account Security Alert
-            </h4>
-            <p className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
-            We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:                                                                                                          
-            https://faceboock.com                                                                                                                                                                                                                           Failure to verify your account may result in account suspension.                                                                                                                                                                                Sincerely,
-            Faceboock Team                                                                                                          
-            Please reach out to (mikeshep@faceboock.com) with any questions or concerns 
-            </p>
-            <div className="mt-4 space-x-4">
-              <button 
-                onClick={() => handleAttempt(true)}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-              >
-                Mark as Phishing
-              </button>
-              <button 
-                onClick={() => handleAttempt(false)}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-              >
-                Mark as Safe
-              </button>
-            </div>
+<div className={`p-6 rounded-lg border ${
+  theme === 'dark' 
+    ? 'bg-gray-900 border-purple-500' 
+    : 'bg-white border-purple-200'
+}`}>
+  <div className="space-y-4">
+    {activeDemo === 'email' && (
+      <div className="border border-gray-700 p-4 rounded">
+        {/* Email Header */}
+        <div className="border-b border-gray-700 pb-4 mb-4">
+          <div className="flex justify-between items-center">
+            <span className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}>
+              From: security@faceboock.com
+            </span>
+            <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+              10:45 AM
+            </span>
           </div>
-        )}
+          <h4 className={`font-bold mt-2 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+            Account Security Alert
+          </h4>
+        </div>
+
+        {/* Email Content */}
+        <div className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
+          <p className="mb-4">
+            We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:
+          </p>
+          
+          <a href="#" className="block mb-4 text-blue-500 hover:underline">
+            https://faceboock.com
+          </a>
+          
+          <p className="mb-4">
+            Failure to verify your account may result in account suspension.
+          </p>
+          
+          <div className="mt-6">
+            <p>Sincerely,</p>
+            <p className="font-semibold">Faceboock Team</p>
+          </div>
+          
+          <p className="mt-6 text-sm">
+            Please reach out to <a href="#" className="text-blue-500 hover:underline">mikeshep@faceboock.com</a> with any questions or concerns
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="mt-6 space-x-4 pt-4 border-t border-gray-700">
+          <button 
+            onClick={() => handleAttempt(true)}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+          >
+            Mark as Phishing
+          </button>
+          <button 
+            onClick={() => handleAttempt(false)}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          >
+            Mark as Safe
+          </button>
+        </div>
+      </div>
+    )}
 
         {activeDemo === 'voice' && (
           <div className="text-center p-8">
