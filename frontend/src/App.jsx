@@ -130,7 +130,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
               <img 
                 src="/images/facebook-logo.png" 
                 alt="Faceboock Security" 
-                className="mt-2"
+                className="mt-2 max-h-8 w-auto object-contain"
               />
             </div>
             
