@@ -55,60 +55,112 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
 }`}>
   <div className="space-y-4">
     {activeDemo === 'email' && (
-      <div className="border border-gray-700 p-4 rounded">
-        {/* Email Header */}
-        <div className="border-b border-gray-700 pb-4 mb-4">
+      <div className={`border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'} rounded-lg overflow-hidden`}>
+        {/* Email Client Header */}
+        <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'} p-3 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+          <div className="flex items-center space-x-2 mb-2">
+            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
+            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
+            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
+          </div>
           <div className="flex justify-between items-center">
-            <span className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}>
-              From: security@faceboock.com
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className={`px-2 py-1 text-xs rounded ${theme === 'dark' ? 'bg-red-900 text-red-200' : 'bg-red-100 text-red-600'}`}>
+                SUSPICIOUS SENDER
+              </span>
+              <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                External Email
+              </span>
+            </div>
             <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
               10:45 AM
             </span>
           </div>
-          <h4 className={`font-bold mt-2 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-            Account Security Alert
-          </h4>
         </div>
 
         {/* Email Content */}
-        <div className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
-          <p className="mb-4">
-            We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:
-          </p>
-          
-          <a href="#" className="block mb-4 text-blue-500 hover:underline">
-            https://faceboock.com
-          </a>
-          
-          <p className="mb-4">
-            Failure to verify your account may result in account suspension.
-          </p>
-          
-          <div className="mt-6">
-            <p>Sincerely,</p>
-            <p className="font-semibold">Faceboock Team</p>
+        <div className="p-4">
+          {/* Email Header Details */}
+          <div className={`space-y-2 pb-4 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+            <div className="flex items-start">
+              <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mr-3">
+                S
+              </div>
+              <div className="flex-1">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      Security Team
+                    </p>
+                    <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                      security@faceboock.com
+                    </p>
+                  </div>
+                  <div className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                    to me ▼
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <p className="mt-6 text-sm">
-            Please reach out to <a href="#" className="text-blue-500 hover:underline">mikeshep@faceboock.com</a> with any questions or concerns
-          </p>
+
+          {/* Email Body */}
+          <div className={`mt-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+            <h2 className={`text-xl font-semibold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+              Account Security Alert
+            </h2>
+            
+            <p className="mb-4">
+              We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:
+            </p>
+            
+            <div className={`p-3 mb-4 rounded ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
+              <a href="#" className="text-blue-500 hover:underline break-all">
+                https://faceboock.com/account/verify?id=12345&token=abc123
+              </a>
+            </div>
+            
+            <p className="mb-4">
+              Failure to verify your account may result in account suspension.
+            </p>
+            
+            <div className={`mt-6 pt-4 border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+              <p>Sincerely,</p>
+              <p className="font-semibold">Faceboock Security Team</p>
+              <img 
+                src="/api/placeholder/120/40" 
+                alt="Faceboock Security" 
+                className="mt-2"
+              />
+            </div>
+            
+            <div className={`mt-6 pt-4 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+              <p>
+                Please reach out to <a href="#" className="text-blue-500 hover:underline">mikeshep@faceboock.com</a> with any questions or concerns
+              </p>
+              <p className="mt-2">
+                This is an automated message. Please do not reply directly to this email.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 space-x-4 pt-4 border-t border-gray-700">
-          <button 
-            onClick={() => handleAttempt(true)}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-          >
-            Mark as Phishing
-          </button>
-          <button 
-            onClick={() => handleAttempt(false)}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-          >
-            Mark as Safe
-          </button>
+        <div className={`p-4 mt-2 border-t ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
+          <div className="space-x-4">
+            <button 
+              onClick={() => handleAttempt(true)}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+            >
+              Mark as Phishing
+            </button>
+            <button 
+              onClick={() => handleAttempt(false)}
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+            >
+              Mark as Safe
+            </button>
+          </div>
         </div>
       </div>
     )}
