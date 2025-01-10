@@ -350,7 +350,7 @@ const App = () => {
           <h2 className={`text-3xl font-bold text-center mb-12 ${
             theme === 'dark' ? 'text-white' : 'text-gray-800'
           }`}>
-            Interactive <span className="text-purple-400">Training</span>
+            Interactive <span className="text-purple-400">Training Demo</span>
           </h2>
 
           {/* Training/Analytics Tabs */}
