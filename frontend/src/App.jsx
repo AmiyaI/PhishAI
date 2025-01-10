@@ -445,29 +445,43 @@ const App = () => {
       </div>
 
       {/* Feedback Modal */}
-      {showFeedback && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-          <Alert className={`${
-            theme === 'dark' ? 'bg-gray-900' : 'bg-white'
-          } border-purple-500 max-w-md`}>
-            <AlertCircle className="h-4 w-4 text-purple-400" />
-            <AlertDescription className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
-              <h3 className="text-xl font-bold mb-2">{alertContent.title}</h3>
-              <p>{alertContent.message}</p>
-              <button 
-                onClick={() => setShowFeedback(false)}
-                className="mt-4 w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
-              >
-                Continue Training
-              </button>
-            </AlertDescription>
-          </Alert>
+    {showFeedback && (
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+        <Alert className={`${
+          theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+        } border-purple-500 max-w-md`}>
+          <AlertCircle className="h-4 w-4 text-purple-400" />
+          <AlertDescription className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
+            <h3 className="text-xl font-bold mb-2">{alertContent.title}</h3>
+            <p>{alertContent.message}</p>
+            <button 
+              onClick={() => setShowFeedback(false)}
+              className="mt-4 w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+            >
+              Continue Training
+            </button>
+          </AlertDescription>
+        </Alert>
+      </div>
+    )}
+
+    {/* Footer */}
+    <footer className={`${
+      theme === 'dark'
+        ? 'bg-black border-t border-purple-500/30 text-gray-400'
+        : 'bg-white border-t border-purple-200 text-gray-600'
+    } py-8`}>
+      <div className="container mx-auto px-4 text-center">
+        <p>© 2025 PhishAI. All rights reserved.</p>
+        <div className="mt-4">
+          <a href="https://github.com/AmiyaI/PhishAI" 
+            className="text-purple-400 hover:text-purple-300 transition-colors">
+            View on GitHub
+          </a>
         </div>
-      )}
-    </div>
-  );
-};
-
-
+      </div>
+    </footer>
+  </div>
+);
 
 export default App;
