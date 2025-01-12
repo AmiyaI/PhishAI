@@ -340,43 +340,40 @@ const App = () => {
   const handleAttempt = (isPhishing) => {
     const correct = isPhishing === true;
     if (correct) {
-      // Only add to score if we haven't completed this demo type
-      if (completedLevels[activeDemo] < 5) {
-        const newScore = score + (level * 100);
-        setScore(Math.min(newScore, 1000)); // Cap the score at 1000
+      const newScore = score + (level * 200); // Adjusted to reach 1000 in 5 levels
+      setScore(Math.min(newScore, 1000)); // Cap the score at 1000
+      
+      setAlertContent({
+        title: "Excellent Work!",
+        message: "You identified the phishing attempt!"
+      });
+      
+      // Track completion for current type
+      if (level < 5) {
+        // Show success feedback first
+        setShowFeedback(true);
         
-        setAlertContent({
-          title: "Excellent Work!",
-          message: "You identified the phishing attempt!"
-        });
+        setLevel(prev => prev + 1);
+        setCompletedLevels(prev => ({
+          ...prev,
+          [activeDemo]: Math.min(prev[activeDemo] + 1, 5)
+        }));
         
-        // Track completion for current type
-        if (level < 5) {
-          setLevel(prev => prev + 1);
-          setCompletedLevels(prev => ({
-            ...prev,
-            [activeDemo]: Math.min(prev[activeDemo] + 1, 5) // Cap at 5 levels
-          }));
-          
-          // Check if all 5 levels are completed for current type
-          if (level === 4) {
+        // If this was the last level, queue the upgrade prompt after feedback
+        if (level === 4) {
+          const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
-          }
+          }, 1000); // Will show upgrade prompt 1 second after user closes feedback
+          return () => clearTimeout(timer);
         }
-      } else {
-        setAlertContent({
-          title: "Demo Completed!",
-          message: "You've completed all available levels in the demo. Upgrade to access more scenarios!"
-        });
-        setShowUpgradePrompt(true);
       }
     } else {
       setAlertContent({
         title: "Learning Opportunity",
         message: "This was a phishing attempt. Keep practicing!"
       });
+      setShowFeedback(true);
     }
-    setShowFeedback(true);
   };
 
   return (
@@ -628,7 +625,13 @@ const App = () => {
             <h3 className="text-xl font-bold mb-2">{alertContent.title}</h3>
             <p>{alertContent.message}</p>
             <button 
-              onClick={() => setShowFeedback(false)}
+              onClick={() => {
+                setShowFeedback(false);
+                // If at max level and score, show upgrade prompt after closing feedback
+                if (level === 5 && score === 1000) {
+                  setShowUpgradePrompt(true);
+                }
+              }}
               className="mt-4 w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
             >
               Continue Training
