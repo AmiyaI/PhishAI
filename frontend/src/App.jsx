@@ -340,7 +340,7 @@ const App = () => {
   const handleAttempt = (isPhishing) => {
     const correct = isPhishing === true;
     if (correct) {
-      const newScore = score + (level * 200); // Adjusted to reach 1000 in 5 levels
+      const newScore = score + 200;; // Adjusted to reach 1000 in 5 levels
       setScore(Math.min(newScore, 1000)); // Cap the score at 1000
       
       setAlertContent({
