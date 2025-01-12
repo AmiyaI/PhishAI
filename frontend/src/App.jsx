@@ -360,7 +360,7 @@ const App = () => {
         }));
         
         // If this was the last level, queue the upgrade prompt after feedback
-        if (level === 5) {
+        if (level === 6) {
           const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
           }, 2000); // Will show upgrade prompt 1 second after user closes feedback
