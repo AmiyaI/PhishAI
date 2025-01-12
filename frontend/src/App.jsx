@@ -26,6 +26,62 @@ const AchievementsBadge = ({ achievement, theme }) => (
   </div>
 );
 
+// Upgrade to Paid Version component
+const DemoProgress = ({ type, completedLevels, theme }) => (
+  <div className={`mb-4 ${
+    theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+  }`}>
+    <div className="flex justify-between items-center mb-2">
+      <span>Demo Progress ({completedLevels[type]}/5)</span>
+      <span className="text-sm">Free Trial</span>
+    </div>
+    <div className="h-2 bg-gray-700 rounded-full">
+      <div 
+        className="h-full bg-purple-500 rounded-full transition-all duration-500"
+        style={{ width: `${(completedLevels[type] / 5) * 100}%` }}
+      />
+    </div>
+  </div>
+);
+
+const UpgradePrompt = ({ theme, onClose }) => (
+  <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+    <div className={`${
+      theme === 'dark' ? 'bg-gray-900' : 'bg-white'
+    } border-purple-500 max-w-md p-6 rounded-lg`}>
+      <h3 className={`text-2xl font-bold mb-4 ${
+        theme === 'dark' ? 'text-white' : 'text-gray-800'
+      }`}>
+        Ready to Take Your Security Training Further?
+      </h3>
+      <p className={`mb-6 ${
+        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+      }`}>
+        You've completed the demo! Unlock the full program to:
+        <ul className="mt-4 list-disc pl-5 space-y-2">
+          <li>Access 100+ advanced scenarios</li>
+          <li>Get detailed performance analytics</li>
+          <li>Receive personalized training paths</li>
+          <li>Track team progress</li>
+        </ul>
+      </p>
+      <div className="space-y-4">
+        <button className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold 
+          hover:bg-purple-700 transition-colors">
+          Upgrade to Full Version
+        </button>
+        <button 
+          onClick={onClose}
+          className="w-full bg-transparent border border-purple-500 text-purple-500 px-6 py-3 
+            rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+        >
+          Continue with Demo
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
 // Training Module Component
 const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achievements }) => (
   <div className="space-y-8">
@@ -234,6 +290,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
   </div>
 );
 
+
 // Main App Component (continues from Part 1)
 const App = () => {
   const [theme, setTheme] = useState('dark');
@@ -243,6 +300,13 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [showFeedback, setShowFeedback] = useState(false);
   const [alertContent, setAlertContent] = useState({ title: '', message: '' });
+
+  const [completedLevels, setCompletedLevels] = useState({
+    email: 0,
+    voice: 0,
+    web: 0
+  });
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState(false);
 
   const achievements = {
     FIRST_CATCH: { 
@@ -284,8 +348,18 @@ const App = () => {
         message: "You identified the phishing attempt!"
       });
       
-      if (newScore >= level * 300 && level < 5) {
+      // Track completion for current type
+      if (level < 5) {
         setLevel(prev => prev + 1);
+        setCompletedLevels(prev => ({
+          ...prev,
+          [activeDemo]: prev[activeDemo] + 1
+        }));
+        
+        // Check if all 5 levels are completed for current type
+        if (level === 4) {
+          setShowUpgradePrompt(true);
+        }
       }
     } else {
       setAlertContent({
@@ -624,6 +698,14 @@ const App = () => {
         </div>
       </div>
     </footer>
+
+    {/* Add UpgradePrompt Modal here */}
+    {showUpgradePrompt && (
+      <UpgradePrompt 
+        theme={theme}
+        onClose={() => setShowUpgradePrompt(false)}
+      />
+    )}
   </div>
 );
 }
