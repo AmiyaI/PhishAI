@@ -349,7 +349,7 @@ const App = () => {
       });
       
       // Track completion for current type
-      if (level < 5) {
+      if (level < 6) {
         // Show success feedback first
         setShowFeedback(true);
         
