@@ -32,13 +32,13 @@ const DemoProgress = ({ type, completedLevels, theme }) => (
     theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
   }`}>
     <div className="flex justify-between items-center mb-2">
-      <span>Demo Progress ({completedLevels[type]}/5)</span>
+      <span>Demo Progress ({Math.min(completedLevels[type], 5)}/5)</span>
       <span className="text-sm">Free Trial</span>
     </div>
     <div className="h-2 bg-gray-700 rounded-full">
       <div 
         className="h-full bg-purple-500 rounded-full transition-all duration-500"
-        style={{ width: `${(completedLevels[type] / 5) * 100}%` }}
+        style={{ width: `${Math.min((completedLevels[type] / 5) * 100, 100)}%` }}
       />
     </div>
   </div>
@@ -340,26 +340,35 @@ const App = () => {
   const handleAttempt = (isPhishing) => {
     const correct = isPhishing === true;
     if (correct) {
-      const newScore = score + (level * 100);
-      setScore(newScore);
-      
-      setAlertContent({
-        title: "Excellent Work!",
-        message: "You identified the phishing attempt!"
-      });
-      
-      // Track completion for current type
-      if (level < 5) {
-        setLevel(prev => prev + 1);
-        setCompletedLevels(prev => ({
-          ...prev,
-          [activeDemo]: prev[activeDemo] + 1
-        }));
+      // Only add to score if we haven't completed this demo type
+      if (completedLevels[activeDemo] < 5) {
+        const newScore = score + (level * 100);
+        setScore(Math.min(newScore, 1000)); // Cap the score at 1000
         
-        // Check if all 5 levels are completed for current type
-        if (level === 4) {
-          setShowUpgradePrompt(true);
+        setAlertContent({
+          title: "Excellent Work!",
+          message: "You identified the phishing attempt!"
+        });
+        
+        // Track completion for current type
+        if (level < 5) {
+          setLevel(prev => prev + 1);
+          setCompletedLevels(prev => ({
+            ...prev,
+            [activeDemo]: Math.min(prev[activeDemo] + 1, 5) // Cap at 5 levels
+          }));
+          
+          // Check if all 5 levels are completed for current type
+          if (level === 4) {
+            setShowUpgradePrompt(true);
+          }
         }
+      } else {
+        setAlertContent({
+          title: "Demo Completed!",
+          message: "You've completed all available levels in the demo. Upgrade to access more scenarios!"
+        });
+        setShowUpgradePrompt(true);
       }
     } else {
       setAlertContent({
@@ -536,7 +545,19 @@ const App = () => {
               {['email', 'voice', 'web'].map((type) => (
                 <button
                   key={type}
-                  onClick={() => setActiveDemo(type)}
+                  onClick={() => {
+                    setActiveDemo(type);
+                    setLevel(1); // Reset level
+                    setScore(0); // Reset score
+
+                    // Only reset the score progress if this demo type hasn't been completed
+                    if (completedLevels[type] < 5) {
+                      setCompletedLevels(prev => ({
+                        ...prev,
+                        [type]: 0
+                      }));
+                    }
+                  }}
                   className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
                     activeDemo === type
                       ? 'bg-purple-600 text-white'
@@ -550,7 +571,7 @@ const App = () => {
               ))}
             </div>
           )}
-
+          
           {/* Main Content Area */}
           <div className="max-w-4xl mx-auto">
             {activeTab === 'training' ? (
@@ -637,7 +658,7 @@ const App = () => {
               {
                 icon: <Server className="w-8 h-8 text-purple-400" />,
                 title: "Infrastructure",
-                items: ["Terraform", "GitHub Actions", "CI/CD Pipelines"]
+                items: ["Terraform", "GitHub Actions", "AWS"]
               },
               {
                 icon: <Brain className="w-8 h-8 text-purple-400" />,
