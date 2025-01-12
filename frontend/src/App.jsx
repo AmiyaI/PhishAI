@@ -340,8 +340,8 @@ const App = () => {
   const handleAttempt = (isPhishing) => {
     const correct = isPhishing === true;
     if (correct) {
-      const newScore = score + 200;; // Adjusted to reach 1000 in 5 levels
-      setScore(Math.min(newScore, 1000)); // Cap the score at 1000
+      const newScore = score + 200;; // Adjusted to reach 1200 in 6 levels
+      setScore(Math.min(newScore, 1200)); // Cap the score at 1200
       
       setAlertContent({
         title: "Excellent Work!",
@@ -349,7 +349,7 @@ const App = () => {
       });
       
       // Track completion for current type
-      if (level < 5) {
+      if (level < 6) {
         // Show success feedback first
         setShowFeedback(true);
         
@@ -360,7 +360,7 @@ const App = () => {
         }));
         
         // If this was the last level, queue the upgrade prompt after feedback
-        if (level === 5) {
+        if (level === 6) {
           const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
           }, 2000); // Will show upgrade prompt 1 second after user closes feedback
@@ -628,7 +628,7 @@ const App = () => {
               onClick={() => {
                 setShowFeedback(false);
                 // If at max level and score, show upgrade prompt after closing feedback
-                if (level === 5 && score === 1000) {
+                if (level === 5 && score === 1200) {
                   setShowUpgradePrompt(true);
                 }
               }}
