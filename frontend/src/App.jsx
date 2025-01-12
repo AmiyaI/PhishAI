@@ -349,7 +349,7 @@ const App = () => {
       });
       
       // Track completion for current type
-      if (level < 6) {
+      if (level < 5) {
         // Show success feedback first
         setShowFeedback(true);
         
@@ -360,7 +360,7 @@ const App = () => {
         }));
         
         // If this was the last level, queue the upgrade prompt after feedback
-        if (level === 6) {
+        if (level === 5) {
           const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
           }, 2000); // Will show upgrade prompt 1 second after user closes feedback
