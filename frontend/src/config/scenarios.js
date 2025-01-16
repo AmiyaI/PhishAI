@@ -8,16 +8,16 @@ export const scenarios = {
         subject: 'Account Security Alert',
         content: {
           title: 'Account Security Alert',
-          body: `We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:`,
+          body: 'We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:',
           link: 'https://faceboock.com/account/verify?id=12345&token=abc123',
           footer: `Failure to verify your account may result in account suspension.
-  
+          
   Sincerely,
   Facebook Security Team`,
-          contact: 'davebunson@faceboock.com'
+          contact: 'davebunson@faceboock.com',
         },
         redFlags: ['Misspelled domain name', 'Urgency in message', 'Suspicious link'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'email-2',
@@ -26,14 +26,14 @@ export const scenarios = {
         subject: 'Your Recent Amazon Purchase',
         content: {
           title: 'Order Confirmation #AMZ-89562',
-          body: `We noticed an unusual purchase on your account for $499.99. If you didn't make this purchase, click below to dispute the charge:`,
+          body: 'We noticed an unusual purchase on your account for $499.99. If you didn\'t make this purchase, click below to dispute the charge:',
           link: 'https://amaz0n.com/billing/dispute',
           footer: `Amazon Billing Department
   This is an automated message.`,
-          contact: 'support@amaz0n.com'
+          contact: 'support@amaz0n.com',
         },
         redFlags: ['Misspelled domain', 'Creating urgency', 'Unusual purchase alert'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'email-3',
@@ -42,14 +42,14 @@ export const scenarios = {
         subject: 'Immediate Action Required: Password Reset',
         content: {
           title: 'Mandatory Password Reset',
-          body: `Due to a recent security update, all employees must reset their passwords within 24 hours. Click here to maintain access:`,
+          body: 'Due to a recent security update, all employees must reset their passwords within 24 hours. Click here to maintain access:',
           link: 'https://company-corp.net.password-reset.ru/login',
           footer: `IT Support Team
   URGENT: Account suspension if not completed`,
-          contact: 'support@company-corp.net'
+          contact: 'support@company-corp.net',
         },
         redFlags: ['Suspicious domain extension', 'Time pressure', 'Generic sender'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'email-4',
@@ -66,29 +66,27 @@ export const scenarios = {
           link: 'https://microsoft.com/billing',
           footer: `Microsoft Billing
   This is an automated message.`,
-          contact: 'billing@microsoft.com'
+          contact: 'billing@microsoft.com',
         },
         redFlags: [],
-        isPhishing: false
+        isPhishing: false,
       },
       {
         id: 'email-5',
         type: 'prize_notification',
         from: 'prize@luckydraw-winner.com',
-        subject: 'Congratulations! You've Won!',
+        subject: 'Congratulations! You\'ve Won!',
         content: {
           title: '🎉 YOU ARE OUR LUCKY WINNER! 🎉',
-          body: `Dear Lucky User,
-  
-  You have been randomly selected to receive a prize of $1,000,000! To claim your prize, please verify your identity by providing your bank details:`,
+          body: 'Dear Lucky User,\n\nYou have been randomly selected to receive a prize of $1,000,000! To claim your prize, please verify your identity by providing your bank details:',
           link: 'https://luckydraw-winner.com/claim-prize',
           footer: `Lucky Draw International
   Reply within 24 hours to claim your prize!`,
-          contact: 'claim@luckydraw-winner.com'
+          contact: 'claim@luckydraw-winner.com',
         },
         redFlags: ['Unknown sender', 'Too good to be true', 'Requests banking information'],
-        isPhishing: true
-      }
+        isPhishing: true,
+      },
     ],
     voice: [
       {
@@ -97,7 +95,7 @@ export const scenarios = {
         caller: 'SSA Officer',
         script: `Hello, this is Officer Moore from the Social Security Administration. We've detected some suspicious activity on your Social Security account. To verify your identity and prevent your account from being suspended, I'll need to confirm your Social Security number.`,
         redFlags: ['Government agency calling', 'Requests SSN', 'Creating urgency'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'voice-2',
@@ -105,7 +103,7 @@ export const scenarios = {
         caller: 'Microsoft Support',
         script: `Hi, I'm calling from Microsoft Technical Support. Our systems have detected a virus on your computer that's stealing your personal information. I can help you remove it, but first I'll need remote access to your computer.`,
         redFlags: ['Unsolicited tech support', 'Requests remote access', 'Creating fear'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'voice-3',
@@ -113,7 +111,7 @@ export const scenarios = {
         caller: 'Bank Security',
         script: `This is the fraud department of your bank. We've noticed suspicious transactions on your account. To secure your account, please verify your card number and CVV.`,
         redFlags: ['Requests card details', 'Generic bank reference', 'Urgent tone'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'voice-4',
@@ -121,7 +119,7 @@ export const scenarios = {
         caller: 'Energy Provider',
         script: `This is your energy provider. Your account is seriously past due and service will be disconnected in one hour unless you make an immediate payment using a prepaid card.`,
         redFlags: ['Immediate threat', 'Requests prepaid card', 'High pressure'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'voice-5',
@@ -129,8 +127,8 @@ export const scenarios = {
         caller: 'IRS Agent',
         script: `I am calling from the IRS regarding a tax fraud case against your name. There is a warrant for your arrest unless you immediately pay the outstanding amount using gift cards.`,
         redFlags: ['IRS impersonation', 'Mentions arrest', 'Requests gift cards'],
-        isPhishing: true
-      }
+        isPhishing: true,
+      },
     ],
     web: [
       {
@@ -141,10 +139,10 @@ export const scenarios = {
         content: {
           logo: '/images/facebook-logo.png',
           formFields: ['email', 'password'],
-          submitButton: 'Log In'
+          submitButton: 'Log In',
         },
         redFlags: ['Misspelled domain', 'Subtle logo differences', 'HTTP instead of HTTPS'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'web-2',
@@ -154,10 +152,10 @@ export const scenarios = {
         content: {
           logo: '/images/chase-logo.png',
           formFields: ['username', 'password', 'security questions'],
-          submitButton: 'Secure Login'
+          submitButton: 'Secure Login',
         },
         redFlags: ['Suspicious subdomain', 'Additional security questions', 'Different URL structure'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'web-3',
@@ -167,10 +165,10 @@ export const scenarios = {
         content: {
           logo: '/images/paypal-logo.png',
           formFields: ['email', 'password'],
-          submitButton: 'Log In Securely'
+          submitButton: 'Log In Securely',
         },
         redFlags: ['Number instead of letter', 'Different font', 'Modified logo'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'web-4',
@@ -180,10 +178,10 @@ export const scenarios = {
         content: {
           logo: '/images/google-logo.png',
           formFields: ['email', 'password'],
-          submitButton: 'Next'
+          submitButton: 'Next',
         },
         redFlags: ['Unusual domain structure', 'Different URL pattern', 'Modified Google interface'],
-        isPhishing: true
+        isPhishing: true,
       },
       {
         id: 'web-5',
@@ -193,10 +191,10 @@ export const scenarios = {
         content: {
           logo: '/images/microsoft-logo.png',
           formFields: ['email', 'password'],
-          submitButton: 'Sign In'
+          submitButton: 'Sign In',
         },
         redFlags: ['Zero instead of O', 'Incorrect domain', 'Slight visual differences'],
-        isPhishing: true
-      }
-    ]
-  };
+        isPhishing: true,
+      },
+    ],
+  }
