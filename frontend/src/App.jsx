@@ -4,6 +4,7 @@ import { Shield, Brain, Cloud, Terminal, Server, Users, Mail, Phone, Globe, Chev
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Alert, AlertDescription } from './components/ui/alert';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import AuthForm from './components/AuthForm';
 
 // Achievement Badge Component
 const AchievementsBadge = ({ achievement, theme }) => (
@@ -294,6 +295,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
 // Main App Component (continues from Part 1)
 const App = () => {
   const [theme, setTheme] = useState('dark');
+  const [showAuth, setShowAuth] = useState(false);
   const [activeDemo, setActiveDemo] = useState('email');
   const [activeTab, setActiveTab] = useState('training');
   const [level, setLevel] = useState(1);
@@ -363,7 +365,7 @@ const App = () => {
         if (level === 5) {
           const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
-          }, 2000); // Will show upgrade prompt 1 second after user closes feedback
+          }, 2000); // Will show upgrade prompt 2 seconds after user closes feedback
           return () => clearTimeout(timer);
         }
       }
@@ -405,7 +407,9 @@ const App = () => {
               phishing attempts through realistic simulations and adaptive learning.
             </p>
             <div className="space-x-4">
-              <button className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
+              <button 
+                onClick={() => setShowAuth(true)} 
+                className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
                 hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
                 Start Free Trial
               </button>
@@ -699,12 +703,18 @@ const App = () => {
             Join organizations using PhishAI to train their teams and protect against 
             sophisticated phishing attacks.
           </p>
-          <button className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
+          <button 
+            onClick={() => setShowAuth(true)}
+            className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
             hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
             Get Started <ChevronRight className="inline ml-2" />
           </button>
         </div>
       </div>
+
+    {/* Auth Form */}
+    {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} />}
+
 
     {/* Footer */}
     <footer className={`${
