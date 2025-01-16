@@ -86,7 +86,7 @@ const UpgradePrompt = ({ theme, onClose }) => (
 );
 
 // Training Module Component
-const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achievements }) => (
+const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achievements, currentScenario }) => (
   <div className="space-y-8">
     {/* Level Progress */}
     <div className="mb-6">
@@ -237,6 +237,7 @@ const App = () => {
       });
       setShowFeedback(true);
     }
+  };
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
@@ -444,6 +445,7 @@ const App = () => {
                 activeDemo={activeDemo}
                 handleAttempt={handleAttempt}
                 achievements={achievements}
+                currentScenario={currentScenario}
               />
             ) : (
               <div className={`p-6 rounded-lg border ${
