@@ -5,6 +5,8 @@ import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Alert, AlertDescription } from './components/ui/alert';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import AuthForm from './components/AuthForm';
+import { scenarios } from './config/scenarios';
+import ScenarioDisplay from './components/ScenarioDisplay';
 
 // Achievement Badge Component
 const AchievementsBadge = ({ achievement, theme }) => (
@@ -105,165 +107,18 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
     </div>
 
     {/* Current Scenario */}
-<div className={`p-6 rounded-lg border ${
-  theme === 'dark' 
-    ? 'bg-gray-900 border-purple-500' 
-    : 'bg-white border-purple-200'
-}`}>
-  <div className="space-y-4">
-    {activeDemo === 'email' && (
-      <div className={`border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'} rounded-lg overflow-hidden`}>
-        {/* Email Client Header */}
-        <div className={`${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'} p-3 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-          <div className="flex items-center space-x-2 mb-2">
-            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
-            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
-            <div className={`w-3 h-3 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`}></div>
-          </div>
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <span className={`px-2 py-1 text-xs rounded ${theme === 'dark' ? 'bg-red-900 text-red-200' : 'bg-red-100 text-red-600'}`}>
-                SUSPICIOUS SENDER
-              </span>
-              <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                External Email
-              </span>
-            </div>
-            <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-              10:45 AM
-            </span>
-          </div>
-        </div>
-
-        {/* Email Content */}
-        <div className="p-4">
-          {/* Email Header Details */}
-          <div className={`space-y-2 pb-4 border-b ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-            <div className="flex items-start">
-              <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-bold mr-3">
-                S
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      Security Team
-                    </p>
-                    <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                      security@faceboock.com
-                    </p>
-                  </div>
-                  <div className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                    to me ▼
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Email Body */}
-          <div className={`mt-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-            <h2 className={`text-xl font-semibold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-              Account Security Alert
-            </h2>
-            
-            <p className="mb-4">
-              We have detected suspicious activity on your account. To protect your information, please click the link below to verify your identity:
-            </p>
-            
-            <div className={`p-3 mb-4 rounded ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
-              <a href="#" className="text-blue-500 hover:underline break-all">
-                https://faceboock.com/account/verify?id=12345&token=abc123
-              </a>
-            </div>
-            
-            <p className="mb-4">
-              Failure to verify your account may result in account suspension.
-            </p>
-            
-            <div className={`mt-6 pt-4 border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-              <p>Sincerely,</p>
-              <p className="font-semibold">Facebook Security Team</p>
-              <img 
-                src="/images/facebook-logo.png" 
-                alt="Faceboock Security" 
-                className="mt-2 max-h-8 w-auto object-contain"
-              />
-            </div>
-            
-            <div className={`mt-6 pt-4 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
-              <p>
-                Please reach out to <a href="#" className="text-blue-500 hover:underline">davebunson@faceboock.com</a> with any questions or concerns
-              </p>
-              <p className="mt-2">
-                This is an automated message. Please do not reply directly to this email.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className={`p-4 mt-2 border-t ${theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
-          <div className="space-x-4">
-            <button 
-              onClick={() => handleAttempt(true)}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-            >
-              Mark as Phishing
-            </button>
-            <button 
-              onClick={() => handleAttempt(false)}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-            >
-              Mark as Safe
-            </button>
-          </div>
-        </div>
-      </div>
-    )}
-
-        {activeDemo === 'voice' && (
-          <div className="text-center p-8">
-            <Phone className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-            <p className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
-              Incoming call from "IT Support"
-            </p>
-            <PlayCircle className="w-12 h-12 text-purple-400 mx-auto cursor-pointer hover:text-purple-300 mt-4" />
-            <p className={`mt-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-              Click to play voice simulation
-            </p>
-          </div>
-        )}
-
-        {activeDemo === 'web' && (
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-gray-400">
-              <Globe className="w-5 h-5" />
-              <span>https://faceboock.com/login</span>
-            </div>
-            <div className="border border-gray-700 p-4 rounded">
-              <img 
-                src="/api/placeholder/400/200" 
-                alt="Suspicious login page" 
-                className="w-full rounded mb-4"
-              />
-              <div className="mt-4 space-x-4">
-                <button 
-                  onClick={() => handleAttempt(true)}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-                >
-                  Mark as Suspicious
-                </button>
-                <button 
-                  onClick={() => handleAttempt(false)}
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-                >
-                  Mark as Safe
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+    <div className={`p-6 rounded-lg border ${
+      theme === 'dark' 
+        ? 'bg-gray-900 border-purple-500' 
+        : 'bg-white border-purple-200'
+    }`}>
+      <div className="space-y-4">
+        <ScenarioDisplay 
+          scenario={currentScenario}
+          type={activeDemo}
+          theme={theme}
+          handleAttempt={handleAttempt}
+        />
       </div>
     </div>
 
@@ -296,6 +151,7 @@ const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achiev
 const App = () => {
   const [theme, setTheme] = useState('dark');
   const [showAuth, setShowAuth] = useState(false);
+  const [currentScenario, setCurrentScenario] = useState(scenarios.email[0]);
   const [activeDemo, setActiveDemo] = useState('email');
   const [activeTab, setActiveTab] = useState('training');
   const [level, setLevel] = useState(1);
@@ -340,14 +196,14 @@ const App = () => {
   ];
 
   const handleAttempt = (isPhishing) => {
-    const correct = isPhishing === true;
+    const correct = isPhishing === currentScenario.isPhishing;
     if (correct) {
-      const newScore = score + 200;; // Adjusted to reach 1000 in 5 levels
+      const newScore = score + 200; // Adjusted to reach 1000 in 5 levels
       setScore(Math.min(newScore, 1000)); // Cap the score at 1000
       
       setAlertContent({
         title: "Excellent Work!",
-        message: "You identified the phishing attempt!"
+        message: correct ? "You correctly identified the scenario!" : "You identified the phishing attempt!"
       });
       
       // Track completion for current type
@@ -361,22 +217,26 @@ const App = () => {
           [activeDemo]: Math.min(prev[activeDemo] + 1, 5)
         }));
         
+        // Load next scenario
+        const currentScenarios = scenarios[activeDemo];
+        const nextScenarioIndex = level % currentScenarios.length;
+        setCurrentScenario(currentScenarios[nextScenarioIndex]);
+        
         // If this was the last level, queue the upgrade prompt after feedback
         if (level === 5) {
           const timer = setTimeout(() => {
             setShowUpgradePrompt(true);
-          }, 2000); // Will show upgrade prompt 2 seconds after user closes feedback
+          }, 2000);
           return () => clearTimeout(timer);
         }
       }
     } else {
       setAlertContent({
         title: "Learning Opportunity",
-        message: "This was a phishing attempt. Keep practicing!"
+        message: `This was ${currentScenario.isPhishing ? 'a phishing attempt' : 'a legitimate message'}. Keep practicing!`
       });
       setShowFeedback(true);
     }
-  };
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
@@ -550,6 +410,7 @@ const App = () => {
                     setActiveDemo(type);
                     setLevel(1); // Reset level
                     setScore(0); // Reset score
+                    setCurrentScenario(scenarios[type][0]);
 
                     // Only reset the score progress if this demo type hasn't been completed
                     if (completedLevels[type] < 5) {
