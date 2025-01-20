@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useState } from 'react';
-import { Shield, Brain, Cloud, Terminal, Server, Users, Mail, Phone, Globe, ChevronRight, PlayCircle, AlertCircle, Sun, Moon, Trophy, Book, Target, BarChart3, Award, Star } from 'lucide-react';
+import { Shield, Brain, Cloud, Terminal, Server, Users, Mail, Phone, Globe, ChevronRight, PlayCircle, AlertCircle, Sun, Moon, Trophy, Book, Target, BarChart3, Award, Star, X } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Alert, AlertDescription } from './components/ui/alert';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -49,9 +49,18 @@ const DemoProgress = ({ type, completedLevels, theme }) => (
 
 const UpgradePrompt = ({ theme, onClose }) => (
   <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-    <div className={`${
+    <div className={`relative ${
       theme === 'dark' ? 'bg-gray-900' : 'bg-white'
     } border-purple-500 max-w-md p-6 rounded-lg`}>
+      <button
+        onClick={onClose}
+        className={`absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200/10 transition-colors ${
+          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+        }`}
+      >
+        <X className="w-5 h-5" />
+      </button>
+
       <h3 className={`text-2xl font-bold mb-4 ${
         theme === 'dark' ? 'text-white' : 'text-gray-800'
       }`}>

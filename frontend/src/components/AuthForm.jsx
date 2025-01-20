@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, X } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const AuthForm = ({ theme, onClose }) => {
@@ -35,9 +35,18 @@ const AuthForm = ({ theme, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-      <Card className={`w-full max-w-md ${
+      <Card className={`relative w-full max-w-md ${
         theme === 'dark' ? 'bg-gray-900 border-purple-500' : 'bg-white border-purple-200'
       }`}>
+        <button
+          onClick={onClose}
+          className={`absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200/10 transition-colors ${
+            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+          }`}
+        >
+          <X className="w-5 h-5" />
+        </button>
+        
         <CardHeader>
           <CardTitle className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
             {isLogin ? 'Login to PhishAI' : 'Create Account'}
