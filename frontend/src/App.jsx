@@ -319,6 +319,93 @@ const App = () => {
         </div>
       </div>
 
+       {/* Disclaimer & Education Section */}
+        <div className={`py-16 ${
+          theme === 'dark' ? 'bg-black/90' : 'bg-purple-50'
+        }`}>
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {/* Disclaimer */}
+              <div className={`mb-8 p-4 rounded-lg border ${
+                theme === 'dark' 
+                  ? 'bg-red-900/20 border-red-500/50' 
+                  : 'bg-red-50 border-red-200'
+              }`}>
+                <h3 className={`text-lg font-semibold mb-2 flex items-center ${
+                  theme === 'dark' ? 'text-red-400' : 'text-red-600'
+                }`}>
+                  <AlertCircle className="w-5 h-5 mr-2" />
+                  Important Disclaimer
+                </h3>
+                <p className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
+                  This website is a learning tool designed to help users identify phishing scenarios. 
+                  All scenarios presented are for educational purposes only and do not represent real threats.
+                </p>
+              </div>
+
+              {/* Why Phishing is Dangerous */}
+              <div className="space-y-6">
+                <h2 className={`text-2xl font-bold mb-6 ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-800'
+                }`}>
+                  Understanding the Threat of Phishing
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className={`p-6 rounded-lg border ${
+                    theme === 'dark' 
+                      ? 'bg-gray-900/50 border-purple-500/30' 
+                      : 'bg-white border-purple-200'
+                  }`}>
+                    <h3 className={`text-xl font-semibold mb-4 ${
+                      theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
+                    }`}>
+                      Real-World Impact
+                    </h3>
+                    <ul className={`space-y-3 ${
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                      <li>• Over $10 billion lost to phishing scams annually</li>
+                      <li>• 83% of organizations experienced phishing attacks in 2023</li>
+                      <li>• Average cost of a data breach: $4.35 million</li>
+                      <li>• 90% of cyber attacks begin with phishing</li>
+                    </ul>
+                  </div>
+
+                  <div className={`p-6 rounded-lg border ${
+                    theme === 'dark' 
+                      ? 'bg-gray-900/50 border-purple-500/30' 
+                      : 'bg-white border-purple-200'
+                  }`}>
+                    <h3 className={`text-xl font-semibold mb-4 ${
+                      theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
+                    }`}>
+                      Common Threats
+                    </h3>
+                    <ul className={`space-y-3 ${
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                      <li>• Credential theft leading to account compromise</li>
+                      <li>• Financial fraud and unauthorized transfers</li>
+                      <li>• Ransomware deployment through phishing links</li>
+                      <li>• Corporate espionage and data theft</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <p className={`mt-6 text-lg ${
+                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  In today's digital landscape, phishing attacks have become increasingly sophisticated, 
+                  targeting individuals and organizations alike. Through realistic simulations and 
+                  hands-on training, PhishAI helps you develop the skills needed to identify and 
+                  avoid these threats, protecting yourself and your organization from potential harm.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
        {/* Stats Section */}
        <div className={`py-16 border-b border-purple-500/30 ${
         theme === 'dark' ? 'bg-black/50' : 'bg-purple-50'
