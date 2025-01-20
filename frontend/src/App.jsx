@@ -214,7 +214,8 @@ const App = () => {
       
       setAlertContent({
         title: "Excellent Work!",
-        message: correct ? "You correctly identified the scenario!" : "You identified the phishing attempt!"
+        message: "You correctly identified the scenario!",
+        correct: true
       });
       
       // Track completion for current type
@@ -244,7 +245,11 @@ const App = () => {
     } else {
       setAlertContent({
         title: "Learning Opportunity",
-        message: `This was ${currentScenario.isPhishing ? 'a phishing attempt' : 'a legitimate message'}. Keep practicing!`
+        message: currentScenario.isPhishing 
+          ? "This was a phishing attempt. Here are the signs you should look for:" 
+          : "This was actually a legitimate message. No red flags were present.",
+        correct: false,
+        redFlags: currentScenario.redFlags
       });
       setShowFeedback(true);
     }
@@ -510,15 +515,38 @@ const App = () => {
       </div>
 
       {/* Feedback Modal */}
+      {/* Feedback Modal */}
     {showFeedback && (
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-        <Alert className={`${
+        <Alert className={`relative ${
           theme === 'dark' ? 'bg-gray-900' : 'bg-white'
         } border-purple-500 max-w-md`}>
+          <CloseButton onClick={() => setShowFeedback(false)} theme={theme} />
           <AlertCircle className="h-4 w-4 text-purple-400" />
           <AlertDescription className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
             <h3 className="text-xl font-bold mb-2">{alertContent.title}</h3>
             <p>{alertContent.message}</p>
+            
+            {/* Add Red Flags Section when answer is incorrect */}
+            {!correct && currentScenario.redFlags.length > 0 && (
+              <div className="mt-4">
+                <h4 className={`font-semibold mb-2 ${
+                  theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
+                }`}>
+                  Red Flags to Look For:
+                </h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  {currentScenario.redFlags.map((flag, index) => (
+                    <li key={index} className={`text-sm ${
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                      {flag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <button 
               onClick={() => {
                 setShowFeedback(false);
