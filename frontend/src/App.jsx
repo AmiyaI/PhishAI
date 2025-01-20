@@ -252,13 +252,30 @@ const App = () => {
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
-      {/* Theme Toggle */}
-      <button
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        className="fixed top-4 right-4 p-2 rounded-full bg-gray-800 text-white z-50"
-      >
-        {theme === 'dark' ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-      </button>
+      {/* Header Buttons */}
+      <div className="fixed top-4 right-4 flex items-center space-x-4 z-50">
+        {/* Contact Us Button */}
+        <button
+          onClick={() => setShowContactForm(true)}
+          className={`px-4 py-2 rounded-lg ${
+            theme === 'dark'
+              ? 'bg-gray-800 text-purple-400 hover:bg-gray-700'
+              : 'bg-white text-purple-600 hover:bg-gray-50'
+          } transition-colors border border-purple-500`}
+        >
+          Contact Us
+        </button>
+
+        {/* Theme Toggle */}
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className={`p-2 rounded-full ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white border border-gray-200'
+          } text-white`}
+        >
+          {theme === 'dark' ? <Sun className="w-6 h-6 text-purple-400" /> : <Moon className="w-6 h-6 text-purple-600" />}
+        </button>
+      </div>
 
       {/* Hero Section */}
       <div className={`relative border-b border-purple-500 ${
