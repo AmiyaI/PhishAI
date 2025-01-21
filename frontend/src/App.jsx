@@ -325,13 +325,10 @@ const App = () => {
                 <img 
                   src="/PhishAILogo2.png"
                   alt="PhishAI Logo"
-                  className="relative w-full h-auto"
+                  className="relative w-full h-auto mix-blend-luminosity"
                   style={{
                     filter: theme === 'dark' 
-                      ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))'
-                      : 'none',
-                    background: theme === 'dark'
-                      ? 'radial-gradient(circle at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%)'
+                      ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
                       : 'none'
                   }}
                 />
