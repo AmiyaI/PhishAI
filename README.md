@@ -134,10 +134,10 @@ Phishing attacks are **constantly evolving** – but with PhishAI, you and your 
 ---
 ## 📩 Contact & Support  
 
-📧 **Email:** support@phishai.co  
-📞 **Phone:** +1-800-PHISH-AI  
+📧 **Email:** support@phishai.co  (not set up yet )
+📞 **Phone:** +1-800-PHISH-AI  (not set up yet)
 🌐 **Website:** [PhishAI.co](https://phishai.co/)  
-🔗 **LinkedIn:** [linkedin.com/company/phishai](https://linkedin.com/company/phishai)  
+🔗 **LinkedIn:** [linkedin.com/company/PHISHAI](https://www.linkedin.com/in/amiya-islam-devopsengineer/)  (not set up yet)
 
 ---
 ## 💡 Stay Secure. Stay Ahead. Choose **PhishAI**. 🛡️🔍  
