@@ -325,18 +325,18 @@ const App = () => {
                 <img 
                   src="/favicon1.png"
                   alt="PhishAI Logo"
-                  className="relative w-full h-auto mix-blend-luminosity"
+                  className="relative w-full h-auto"
                   style={{
                     filter: theme === 'dark' 
-                      ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
+                      ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))'
+                      : 'none',
+                    background: theme === 'dark'
+                      ? 'radial-gradient(circle at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%)'
                       : 'none'
                   }}
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
        {/* Stats Section */}
        <div className={`py-16 border-b border-purple-500/30 ${
