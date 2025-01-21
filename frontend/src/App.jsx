@@ -287,18 +287,18 @@ const App = () => {
       <div className={`relative border-b border-purple-500 ${
         theme === 'dark' ? 'bg-gradient-to-r from-purple-900/20 to-black' : 'bg-gradient-to-r from-purple-100 to-white'
       }`}>
-        <div className="container mx-auto px-4 py-24">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">  {/* Updated for mobile */}
+        <div className="container mx-auto px-4 py-16">  {/* Changed from py-24 to py-16 */}
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">  {/* Changed gap-8 to gap-6 */}
             <div className="max-w-2xl">
-              <h1 className="text-6xl font-bold mb-6">
+              <h1 className="text-6xl font-bold mb-4">  {/* Changed mb-6 to mb-4 */}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
                   PhishAI
                 </span>
               </h1>
-              <p className={`text-xl mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+              <p className={`text-xl mb-3 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>  {/* Changed mb-4 to mb-3 */}
                 Empower your workforce with AI-driven security awareness training
               </p>
-              <p className={`text-lg mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+              <p className={`text-lg mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>  {/* Changed mb-8 to mb-6 */}
                 Our platform helps employees at all levels identify and respond to sophisticated 
                 phishing attempts through realistic simulations and adaptive learning.
               </p>
@@ -317,8 +317,8 @@ const App = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full md:flex-1 flex justify-center overflow-hidden">  {/* Updated container */}
-              <div className="relative w-64 md:w-80">  {/* Smaller on mobile */}
+            <div className="w-full md:flex-1 flex justify-center overflow-hidden">
+              <div className="relative w-64 md:w-80">
                 {/* Background blur/gradient effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent 
                   blur-xl rounded-full" />
@@ -330,7 +330,7 @@ const App = () => {
                     filter: theme === 'dark' 
                       ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
                       : 'none',
-                    WebkitFilter: theme === 'dark'  // Added for Safari support
+                    WebkitFilter: theme === 'dark'
                       ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
                       : 'none',
                   }}
