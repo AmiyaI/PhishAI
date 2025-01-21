@@ -288,7 +288,7 @@ const App = () => {
         theme === 'dark' ? 'bg-gradient-to-r from-purple-900/20 to-black' : 'bg-gradient-to-r from-purple-100 to-white'
       }`}>
         <div className="container mx-auto px-4 py-24">
-          <div className="flex items-start justify-between">
+          <div className="flex items-start">
             <div className="max-w-2xl">
               <h1 className="text-6xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
@@ -317,15 +317,22 @@ const App = () => {
                 </button>
               </div>
             </div>
-            <div className="flex-shrink-0 ml-8">
-              <img 
-                src="/PhishAILogo2.png" // Replace with your actual logo filename
-                alt="PhishAI Logo"
-                className="w-72 h-auto" // Adjust size as needed
-                style={{
-                  filter: theme === 'dark' ? 'brightness(0.9)' : 'none'
-                }}
-              />
+            <div className="flex-1 flex justify-center">
+              <div className="relative w-80">
+                {/* Background blur/gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent 
+                  blur-xl rounded-full" />
+                <img 
+                  src="/favicon1.png"
+                  alt="PhishAI Logo"
+                  className="relative w-full h-auto mix-blend-luminosity"
+                  style={{
+                    filter: theme === 'dark' 
+                      ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
+                      : 'none'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
