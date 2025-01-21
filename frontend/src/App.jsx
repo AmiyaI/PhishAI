@@ -319,7 +319,7 @@ const App = () => {
             </div>
             <div className="flex-shrink-0 ml-8">
               <img 
-                src="/favicon1.png" // Replace with your actual logo filename
+                src="/PhishAILogo2.png" // Replace with your actual logo filename
                 alt="PhishAI Logo"
                 className="w-72 h-auto" // Adjust size as needed
                 style={{
