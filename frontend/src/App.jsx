@@ -323,7 +323,7 @@ const App = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent 
                   blur-xl rounded-full" />
                 <img 
-                  src="/PhishAILogo2.png"
+                  src="/favicon1.png"
                   alt="PhishAI Logo"
                   className="relative w-full h-auto mix-blend-luminosity"
                   style={{
