@@ -319,15 +319,15 @@ const App = () => {
             </div>
             <div className="w-full md:flex-1 flex justify-center overflow-hidden">
               <div className="relative w-64 md:w-80 group"> {/* Added group class */}
-                {/* Enhanced glow effect */}
-                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 
-                  transition-all duration-500 blur-3xl rounded-full -z-10"></div>
+                {/* Subtle glow effect on hover */}
+                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/5 
+                  transition-all duration-300 blur-2xl rounded-full -z-10"></div>
                 
                 <img 
                   src="/phishlogo.png"
                   alt="PhishAI Logo"
-                  className="relative w-full h-auto object-contain transition-all duration-500
-                    animate-float group-hover:scale-105" // Combined float animation with hover scale
+                  className="relative w-full h-auto object-contain transition-transform duration-300
+                    group-hover:scale-105" // Simple scale effect on hover
                   style={{
                     filter: theme === 'dark' 
                       ? 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) brightness(1.1) contrast(1.1)'
