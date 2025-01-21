@@ -288,32 +288,44 @@ const App = () => {
         theme === 'dark' ? 'bg-gradient-to-r from-purple-900/20 to-black' : 'bg-gradient-to-r from-purple-100 to-white'
       }`}>
         <div className="container mx-auto px-4 py-24">
-          <div className="max-w-4xl">
-            <h1 className="text-6xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
-                PhishAI
-              </span>
-            </h1>
-            <p className={`text-xl mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-              Empower your workforce with AI-driven security awareness training
-            </p>
-            <p className={`text-lg mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-              Our platform helps employees at all levels identify and respond to sophisticated 
-              phishing attempts through realistic simulations and adaptive learning.
-            </p>
-            <div className="space-x-4">
-              <button 
-                onClick={() => setShowAuth(true)} 
-                className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
-                hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
-                Start Free Trial
-              </button>
-              <button className={`bg-transparent px-8 py-3 rounded-lg font-semibold 
-                transition-colors border border-purple-500 ${
-                theme === 'dark' ? 'text-purple-400 hover:bg-purple-900/30' : 'text-purple-600 hover:bg-purple-100'
-              }`}>
-                Watch Demo
-              </button>
+          <div className="flex items-start justify-between">
+            <div className="max-w-2xl">
+              <h1 className="text-6xl font-bold mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
+                  PhishAI
+                </span>
+              </h1>
+              <p className={`text-xl mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                Empower your workforce with AI-driven security awareness training
+              </p>
+              <p className={`text-lg mb-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+                Our platform helps employees at all levels identify and respond to sophisticated 
+                phishing attempts through realistic simulations and adaptive learning.
+              </p>
+              <div className="space-x-4">
+                <button 
+                  onClick={() => setShowAuth(true)} 
+                  className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
+                  hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
+                  Start Free Trial
+                </button>
+                <button className={`bg-transparent px-8 py-3 rounded-lg font-semibold 
+                  transition-colors border border-purple-500 ${
+                  theme === 'dark' ? 'text-purple-400 hover:bg-purple-900/30' : 'text-purple-600 hover:bg-purple-100'
+                }`}>
+                  Watch Demo
+                </button>
+              </div>
+            </div>
+            <div className="flex-shrink-0 ml-8">
+              <img 
+                src="/favicon1.png" // Replace with your actual logo filename
+                alt="PhishAI Logo"
+                className="w-72 h-auto" // Adjust size as needed
+                style={{
+                  filter: theme === 'dark' ? 'brightness(0.9)' : 'none'
+                }}
+              />
             </div>
           </div>
         </div>
