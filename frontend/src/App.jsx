@@ -318,7 +318,7 @@ const App = () => {
               </div>
             </div>
             <div className="w-full md:flex-1 flex justify-center overflow-hidden">
-              <div className="relative w-64 md:w-80 group"> {/* Added group class */}
+              <div className="relative w-72 md:w-96 group"> {/* Added group class */}
                 {/* Subtle glow effect on hover */}
                 <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/5 
                   transition-all duration-300 blur-2xl rounded-full -z-10"></div>
