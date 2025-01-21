@@ -1,5 +1,8 @@
-# 🛡️ PhishAI - AI-Powered Phishing Detection & Training 🧠🎯  
+ # 🛡️ PhishAI - AI-Powered Phishing Detection & Training 🧠🎯  
 
+🔮 **Website:** [PhishAI.co](https://phishai.co/) 
+
+---
 ## 🚀 Introduction  
 Phishing is one of the most **dangerous and deceptive** cyber threats today. Attackers use emails, websites, and messages to trick individuals into revealing sensitive information like passwords, banking details, and personal data. The consequences? **Financial losses, identity theft, and corporate data breaches.**  
 
