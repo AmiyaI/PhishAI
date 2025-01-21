@@ -323,7 +323,7 @@ const App = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent 
                   blur-xl rounded-full" />
                 <img 
-                  src="/favicon1.png"
+                  src="/PhishAILogo2.png"
                   alt="PhishAI Logo"
                   className="relative w-full h-auto"
                   style={{
@@ -337,6 +337,9 @@ const App = () => {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
        {/* Stats Section */}
        <div className={`py-16 border-b border-purple-500/30 ${
