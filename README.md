@@ -130,3 +130,14 @@ Phishing is one of the most **dangerous and deceptive** cyber threats today. Att
 Phishing attacks are **constantly evolving** – but with PhishAI, you and your team can stay **one step ahead**. Whether you’re an **individual, business, or security professional**, PhishAI **empowers you** with the tools needed to **identify, prevent, and educate** against phishing threats.  
 
 🔹 **Ready to start your AI-driven security training?** Contact us today! 📩  
+
+---
+## 📩 Contact & Support  
+
+📧 **Email:** support@phishai.co  
+📞 **Phone:** +1-800-PHISH-AI  
+🌐 **Website:** [PhishAI.co](https://phishai.co/)  
+🔗 **LinkedIn:** [linkedin.com/company/phishai](https://linkedin.com/company/phishai)  
+
+---
+## 💡 Stay Secure. Stay Ahead. Choose **PhishAI**. 🛡️🔍  
