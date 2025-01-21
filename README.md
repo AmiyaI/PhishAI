@@ -25,6 +25,7 @@ Phishing is one of the most **dangerous and deceptive** cyber threats today. Att
 ---
 
 ## 🏗️ Project Structure  
+```plaintext
 📦 PhishAI
 ├── 📜 LICENSE
 ├── 📜 README.md
@@ -34,68 +35,68 @@ Phishing is one of the most **dangerous and deceptive** cyber threats today. Att
 │   │   └── user_response_handler.py    # Processes user responses in training sessions
 │   ├── 🏗️ lambda
 │   │   ├── main.py                     # AWS Lambda function for processing phishing detections
-│   │   └── requirements.txt             # Dependencies for Lambda
+│   │   └── requirements.txt            # Dependencies for Lambda
 │   └── 🛠️ utils
-│       ├── bedrock_client.py            # AWS Bedrock API integration for AI analysis
-│       ├── polly_client.py              # AWS Polly for voice-based phishing training
-│       └── sagemaker_client.py          # AWS SageMaker for ML-powered phishing detection
+│       ├── bedrock_client.py           # AWS Bedrock API integration for AI analysis
+│       ├── polly_client.py             # AWS Polly for voice-based phishing training
+│       └── sagemaker_client.py         # AWS SageMaker for ML-powered phishing detection
 ├── 📖 docs
-│   ├── 🖼️ architecture_diagram.png      # System architecture overview
-│   ├── 📜 design_decisions.md           # Explanation of tech stack and decisions
-│   └── 🚀 roadmap.md                     # Future improvements and features
+│   ├── 🖼️ architecture_diagram.png     # System architecture overview
+│   ├── 📜 design_decisions.md          # Explanation of tech stack and decisions
+│   └── 🚀 roadmap.md                   # Future improvements and features
 ├── 🌐 frontend
-│   ├── 📜 README.md                      # Frontend documentation
-│   ├── 📜 eslint.config.js               # Linter configuration
-│   ├── 📜 index.html                      # Main entry point for the frontend
-│   ├── 📜 package.json                    # Frontend dependencies
-│   ├── 🎨 postcss.config.js               # CSS processing setup
+│   ├── 📜 README.md                     # Frontend documentation
+│   ├── 📜 eslint.config.js              # Linter configuration
+│   ├── 📜 index.html                     # Main entry point for the frontend
+│   ├── 📜 package.json                   # Frontend dependencies
+│   ├── 🎨 postcss.config.js              # CSS processing setup
 │   ├── 🖼️ public/
-│   │   ├── favicon1.png                   # App favicon
+│   │   ├── favicon1.png                  # App favicon
 │   │   ├── images/
-│   │   │   └── facebook-logo.png           # Example phishing email logo
-│   │   └── vite.svg                        # Vite logo for UI
+│   │   │   └── facebook-logo.png          # Example phishing email logo
+│   │   └── vite.svg                       # Vite logo for UI
 │   ├── 🖌️ src/
-│   │   ├── 🖥️ App.jsx                     # Main React component
+│   │   ├── 🖥️ App.jsx                    # Main React component
 │   │   ├── 🖼️ assets/
-│   │   │   └── react.svg                   # React logo asset
+│   │   │   └── react.svg                  # React logo asset
 │   │   ├── 🛠️ components/
-│   │   │   ├── 🔐 AuthForm.jsx             # Authentication form (future feature)
-│   │   │   ├── ✉️ ContactForm.jsx          # Contact support form
-│   │   │   ├── 📧 ScenarioDisplay.jsx      # Displays phishing training scenarios
+│   │   │   ├── 🔐 AuthForm.jsx            # Authentication form (future feature)
+│   │   │   ├── ✉️ ContactForm.jsx         # Contact support form
+│   │   │   ├── 📧 ScenarioDisplay.jsx     # Displays phishing training scenarios
 │   │   │   └── 🛠️ ui/
-│   │   │       ├── 🚨 alert.jsx            # Custom alert component
-│   │   │       └── 📝 card.jsx             # Reusable UI card component
+│   │   │       ├── 🚨 alert.jsx           # Custom alert component
+│   │   │       └── 📝 card.jsx            # Reusable UI card component
 │   │   ├── ⚙️ config/
-│   │   │   └── 📜 scenarios.js            # Phishing training scenarios
-│   │   ├── 🎨 index.css                    # Global CSS styles
-│   │   └── 🚀 main.jsx                     # React app entry point
-│   ├── 🎨 tailwind.config.js               # Tailwind CSS configuration
-│   └── 🛠️ vite.config.js                   # Vite build configuration
+│   │   │   └── 📜 scenarios.js           # Phishing training scenarios
+│   │   ├── 🎨 index.css                   # Global CSS styles
+│   │   └── 🚀 main.jsx                    # React app entry point
+│   ├── 🎨 tailwind.config.js              # Tailwind CSS configuration
+│   └── 🛠️ vite.config.js                  # Vite build configuration
 ├── ☁️ infrastructure
-│   ├── 📦 lambda_package.zip              # Packaged Lambda function for AWS
-│   ├── 📜 main.tf                          # Terraform infrastructure definition
-│   ├── 📜 outputs.tf                       # Terraform output variables
-│   ├── 📜 providers.tf                     # Terraform provider configurations
-│   ├── 📜 terraform.tfstate                # Terraform state file
-│   └── 📜 variables.tf                     # Terraform variables
+│   ├── 📦 lambda_package.zip             # Packaged Lambda function for AWS
+│   ├── 📜 main.tf                         # Terraform infrastructure definition
+│   ├── 📜 outputs.tf                      # Terraform output variables
+│   ├── 📜 providers.tf                    # Terraform provider configurations
+│   ├── 📜 terraform.tfstate               # Terraform state file
+│   └── 📜 variables.tf                    # Terraform variables
 ├── 🤖 models
 │   └── 🧠 model_configs/
-│       └── stable_diffusion_config.json    # AI model configuration
-├── 📜 package-lock.json                     # Dependency lockfile
+│       └── stable_diffusion_config.json   # AI model configuration
+├── 📜 package-lock.json                    # Dependency lockfile
 ├── 🎭 scenarios
 │   └── 📜 prompts/
-│       ├── 📜 Lvl 1 scam.txt               # Beginner phishing scenario
-│       ├── 📜 Lvl 2 RealEmail.txt          # Legitimate email scenario
-│       ├── 📜 Lvl 3 scam2.txt              # Intermediate phishing scenario
-│       ├── 📜 Lvl 4 ScamEmail.txt          # Advanced phishing scenario
-│       ├── 📜 Lvl 5 RealEmail.txt          # Another legitimate email example
-│       └── 📜 scam_call2.txt               # Phone call phishing script
+│       ├── 📜 Lvl 1 scam.txt              # Beginner phishing scenario
+│       ├── 📜 Lvl 2 RealEmail.txt         # Legitimate email scenario
+│       ├── 📜 Lvl 3 scam2.txt             # Intermediate phishing scenario
+│       ├── 📜 Lvl 4 ScamEmail.txt         # Advanced phishing scenario
+│       ├── 📜 Lvl 5 RealEmail.txt         # Another legitimate email example
+│       └── 📜 scam_call2.txt              # Phone call phishing script
 └── 🛠️ test
-├── 🔍 integration/
-│   └── 🧪 test_api_calls.py           # Tests for API calls
-└── 🧪 unit/
-└── 🧪 test_scenario_logic.py      # Tests for phishing scenario logic
-
+│   ├── 🔍 integration/
+│   │   └── 🧪 test_api_calls.py           # Tests for API calls
+│   └── 🧪 unit/
+│       └── 🧪 test_scenario_logic.py      # Tests for phishing scenario logic
+``` 
 ---
 
 ## 🛠️ How PhishAI Works  
