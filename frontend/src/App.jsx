@@ -271,8 +271,10 @@ const App = () => {
         >
           Contact Us
         </button>
+      </div>
 
-        {/* Login Button */}
+      {/* Fixed Login Button - positioned to the left of Contact Us */}
+      <div className="fixed top-4 right-[7.5rem] flex items-center space-x-4 z-50">
         <button
           onClick={() => setShowAuth(true)}
           className={`px-4 py-2 rounded-lg ${
@@ -285,8 +287,8 @@ const App = () => {
         </button>
       </div>
 
-      {/* Scrollable Theme Toggle */}
-      <div className="absolute top-4 right-[8.5rem] flex items-center space-x-4 z-40">
+      {/* Theme Toggle - stays on the right and scrolls */}
+      <div className="absolute top-4 right-4 z-40">
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           className={`p-2 rounded-full ${
