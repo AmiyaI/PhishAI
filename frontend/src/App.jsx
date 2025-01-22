@@ -258,7 +258,7 @@ const App = () => {
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
-      {/* Fixed Header Buttons */}
+      {/* Fixed Header Buttons - Theme Toggle and Contact Us */}
       <div className="fixed top-4 right-4 flex items-center space-x-4 z-50">
         {/* Contact Us Button */}
         <button
@@ -272,7 +272,19 @@ const App = () => {
           Contact Us
         </button>
 
-        {/* Login Button */}
+        {/* Theme Toggle */}
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className={`p-2 rounded-full ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white border border-gray-200'
+          } text-white`}
+        >
+          {theme === 'dark' ? <Sun className="w-6 h-6 text-purple-400" /> : <Moon className="w-6 h-6 text-purple-600" />}
+        </button>
+      </div>
+
+      {/* Scrolling Login Button */}
+      <div className="absolute top-4 right-[8.5rem] z-40">
         <button
           onClick={() => setShowAuth(true)}
           className={`px-4 py-2 rounded-lg ${
@@ -282,18 +294,6 @@ const App = () => {
           } transition-colors border border-purple-500`}
         >
           Login
-        </button>
-      </div>
-
-      {/* Scrolling Theme Toggle */}
-      <div className="absolute top-4 right-4 z-40">
-        <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className={`p-2 rounded-full ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white border border-gray-200'
-          } text-white`}
-        >
-          {theme === 'dark' ? <Sun className="w-6 h-6 text-purple-400" /> : <Moon className="w-6 h-6 text-purple-600" />}
         </button>
       </div>
 
