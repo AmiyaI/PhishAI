@@ -348,7 +348,7 @@ const App = () => {
                   transition-all duration-300 blur-2xl rounded-full -z-10"></div>
                 
                 <img 
-                  src="/phishlogo.png"
+                  src="/phish.png"
                   alt="PhishAI Logo"
                   className="relative w-full h-auto object-contain transition-transform duration-300
                     group-hover:scale-105" // Simple scale effect on hover
