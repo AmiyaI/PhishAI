@@ -284,7 +284,7 @@ const App = () => {
       </div>
 
       {/* Scrolling Login Button */}
-      <div className="absolute top-4 right-[11rem] z-40">
+      <div className="absolute top-4 right-[14rem] z-40">
         <button
           onClick={() => setShowAuth(true)}
           className={`px-4 py-2 rounded-lg ${
