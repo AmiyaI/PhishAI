@@ -258,7 +258,7 @@ const App = () => {
   };
   
   const handleLogin = (credentials) => {
-    if (credentials.email === 'phishai' && credentials.password === 'phishai') {
+    if (credentials.email === 'phishai@phishai.co' && credentials.password === 'phishai') {
       setIsAuthenticated(true);
       setShowAuth(false);
       setActiveTab('training');

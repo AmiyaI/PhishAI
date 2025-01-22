@@ -18,7 +18,7 @@ const AuthForm = ({ theme, onClose, onLogin }) => {
     if (isLogin) {
       // Demo login validation
       onLogin(formData);
-      if (formData.email !== 'phishai' || formData.password !== 'phishai') {
+      if (formData.email !== 'phishai@phishai.co' || formData.password !== 'phishai') {
         setError('Invalid credentials. For demo use: phishai/phishai');
       }
     } else {
