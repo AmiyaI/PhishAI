@@ -3,13 +3,11 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { AlertCircle, X } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-const AuthForm = ({ theme, onClose }) => {
+const AuthForm = ({ theme, onClose, onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
-    companyName: ''
   });
   const [error, setError] = useState('');
 
@@ -17,15 +15,17 @@ const AuthForm = ({ theme, onClose }) => {
     e.preventDefault();
     setError('');
 
-    if (!isLogin && formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
+    if (isLogin) {
+      // Demo login validation
+      onLogin(formData);
+      if (formData.email !== 'phishai' || formData.password !== 'phishai') {
+        setError('Invalid credentials. For demo use: phishai/phishai');
+      }
+    } else {
+      setError('Sign up is not available in demo mode');
     }
-
-    // TODO: Add actual authentication logic here
-    console.log('Form submitted:', formData);
   };
-
+  
   const handleInputChange = (e) => {
     setFormData({
       ...formData,

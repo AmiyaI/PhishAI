@@ -162,6 +162,7 @@ const App = () => {
   const [theme, setTheme] = useState('dark');
   const [showAuth, setShowAuth] = useState(false);
   const [currentScenario, setCurrentScenario] = useState(scenarios.email[0]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeDemo, setActiveDemo] = useState('email');
   const [activeTab, setActiveTab] = useState('training');
   const [level, setLevel] = useState(1);
@@ -253,6 +254,15 @@ const App = () => {
         redFlags: currentScenario.redFlags || []
       });
       setShowFeedback(true);
+    }
+  };
+  
+  const handleLogin = (credentials) => {
+    if (credentials.email === 'phishai' && credentials.password === 'phishai') {
+      setIsAuthenticated(true);
+      setShowAuth(false);
+      setActiveTab('training');
+      document.querySelector('#training-section').scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -523,11 +533,9 @@ const App = () => {
         </div>
 
       {/* Interactive Training Section */}
-      <div className={`py-16 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+      <div id="training-section" className={`py-16 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
         <div className="container mx-auto px-4">
-          <h2 className={`text-3xl font-bold text-center mb-12 ${
-            theme === 'dark' ? 'text-white' : 'text-gray-800'
-          }`}>
+          <h2 className={`text-3xl font-bold text-center mb-12 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
             Interactive <span className="text-purple-400">Training Demo</span>
           </h2>
 
@@ -756,7 +764,7 @@ const App = () => {
       </div>
 
     {/* Auth Form */}
-    {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} />}
+    {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
 
 
     {/* Footer */}
