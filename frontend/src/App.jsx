@@ -4,6 +4,8 @@ import { Shield, Brain, Cloud, Terminal, Server, Users, Mail, Phone, Globe, Chev
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Alert, AlertDescription } from './components/ui/alert';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 import AuthForm from './components/AuthForm';
 import { scenarios } from './config/scenarios';
 import ScenarioDisplay from './components/ScenarioDisplay';
@@ -170,7 +172,8 @@ const App = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [alertContent, setAlertContent] = useState({ title: '', message: '' });
   const [showContactForm, setShowContactForm] = useState(false);
-
+  const navigate = useNavigate();
+  
   const [completedLevels, setCompletedLevels] = useState({
     email: 0,
     voice: 0,
@@ -261,51 +264,54 @@ const App = () => {
     if (credentials.email === 'phishai@phishai.co' && credentials.password === 'phishai') {
       setIsAuthenticated(true);
       setShowAuth(false);
-      setActiveTab('training');
-      document.querySelector('#training-section').scrollIntoView({ behavior: 'smooth' });
+      navigate('/dashboard');
     }
   };
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
-      {/* Fixed Header Buttons - Theme Toggle and Contact Us */}
-      <div className="fixed top-4 right-4 flex items-center space-x-4 z-50">
-        {/* Contact Us Button */}
-        <button
-          onClick={() => setShowContactForm(true)}
-          className={`px-4 py-2 rounded-lg ${
-            theme === 'dark'
-              ? 'bg-gray-800 text-purple-400 hover:bg-gray-700'
-              : 'bg-white text-purple-600 hover:bg-gray-50'
-          } transition-colors border border-purple-500`}
-        >
-          Contact Us
-        </button>
-
-        {/* Theme Toggle */}
-        <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className={`p-2 rounded-full ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white border border-gray-200'
-          } text-white`}
-        >
-          {theme === 'dark' ? <Sun className="w-6 h-6 text-purple-400" /> : <Moon className="w-6 h-6 text-purple-600" />}
-        </button>
-      </div>
-
-      {/* Scrolling Login Button */}
-      <div className="absolute top-4 right-[13rem] z-40">
-        <button
-          onClick={() => setShowAuth(true)}
-          className={`px-4 py-2 rounded-lg ${
-            theme === 'dark'
-              ? 'bg-gray-800 text-purple-400 hover:bg-gray-700'
-              : 'bg-white text-purple-600 hover:bg-gray-50'
-          } transition-colors border border-purple-500`}
-        >
-          Login
-        </button>
-      </div>
+    <Routes>
+      <Route 
+        path="/" 
+        element={
+          <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
+            {/* Header Buttons */}
+            <div className="fixed top-4 right-4 flex items-center space-x-4 z-50">
+              {/* Contact Us Button */}
+              <button
+                onClick={() => setShowContactForm(true)}
+                className={`px-4 py-2 rounded-lg ${
+                  theme === 'dark'
+                    ? 'bg-gray-800 text-purple-400 hover:bg-gray-700'
+                    : 'bg-white text-purple-600 hover:bg-gray-50'
+                } transition-colors border border-purple-500`}
+              >
+                Contact Us
+              </button>
+  
+              {/* Theme Toggle */}
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className={`p-2 rounded-full ${
+                  theme === 'dark' ? 'bg-gray-800' : 'bg-white border border-gray-200'
+                } text-white`}
+              >
+                {theme === 'dark' ? <Sun className="w-6 h-6 text-purple-400" /> : <Moon className="w-6 h-6 text-purple-600" />}
+              </button>
+            </div>
+  
+            {/* Scrolling Login Button */}
+            <div className="absolute top-4 right-[13rem] z-40">
+              <button
+                onClick={() => setShowAuth(true)}
+                className={`px-4 py-2 rounded-lg ${
+                  theme === 'dark'
+                    ? 'bg-gray-800 text-purple-400 hover:bg-gray-700'
+                    : 'bg-white text-purple-600 hover:bg-gray-50'
+                } transition-colors border border-purple-500`}
+              >
+                Login
+              </button>
+            </div>
 
       {/* Hero Section */}
       <div className={`relative border-b border-purple-500 ${
@@ -765,6 +771,31 @@ const App = () => {
 
     {/* Auth Form */}
     {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
+          {showUpgradePrompt && (
+            <UpgradePrompt 
+              theme={theme}
+              onClose={() => setShowUpgradePrompt(false)}
+            />
+          )}
+          {showContactForm && (
+            <ContactForm 
+              theme={theme}
+              onClose={() => setShowContactForm(false)}
+            />
+          )}
+        </div>
+      } 
+    />
+    <Route 
+      path="/dashboard" 
+      element={
+        isAuthenticated ? 
+          <Dashboard theme={theme} /> : 
+          <Navigate to="/" replace />
+      } 
+    />
+  </Routes>
+);
 
 
     {/* Footer */}
