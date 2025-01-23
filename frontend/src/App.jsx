@@ -771,6 +771,8 @@ const App = () => {
 
     {/* Auth Form */}
     {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
+          
+          {/* Modals */}
           {showUpgradePrompt && (
             <UpgradePrompt 
               theme={theme}
@@ -795,48 +797,6 @@ const App = () => {
       } 
     />
   </Routes>
-);
-
-
-    {/* Footer */}
-    <footer className={`${
-      theme === 'dark'
-        ? 'bg-black border-t border-purple-500/30 text-gray-400'
-        : 'bg-white border-t border-purple-200 text-gray-600'
-    } py-8`}>
-      <div className="container mx-auto px-4 text-center">
-        <p>© 2025 PhishAI. All rights reserved.</p>
-        <div className="mt-4 space-x-4">
-          <a href="https://github.com/AmiyaI/PhishAI" 
-            className="text-purple-400 hover:text-purple-300 transition-colors">
-            View on GitHub
-          </a>
-          <button 
-            onClick={() => setShowContactForm(true)}
-            className="text-purple-400 hover:text-purple-300 transition-colors"
-          >
-            Contact Us
-          </button>
-        </div>
-      </div>
-    </footer>
-
-    {/* Add UpgradePrompt Modal here */}
-    {showUpgradePrompt && (
-      <UpgradePrompt 
-        theme={theme}
-        onClose={() => setShowUpgradePrompt(false)}
-      />
-    )}
-
-    {/* Add ContactForm Modal here */}
-    {showContactForm && (
-      <ContactForm 
-        theme={theme}
-        onClose={() => setShowContactForm(false)}
-      />
-    )}
-  </div>
 );
 }
 
