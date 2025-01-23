@@ -1,81 +1,104 @@
-import React from 'react';
-import { Shield, Brain, Cloud } from 'lucide-react';
-import ScenarioDisplay from './ScenarioDisplay';
+import React, { useState } from 'react';
+import { Shield, Brain, Cloud, LogOut, User, BarChart2, Settings, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const Dashboard = ({ theme }) => {
+const Dashboard = ({ theme, onLogout }) => {
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('training');
+  
+  const handleLogout = () => {
+    onLogout();
+    navigate('/');
+  };
+
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}>
-      {/* Dashboard Header */}
-      <div className={`border-b border-purple-500/30 ${
+      {/* Navigation Bar */}
+      <nav className={`border-b border-purple-500/30 ${
         theme === 'dark' ? 'bg-gray-900/50' : 'bg-purple-50'
       }`}>
-        <div className="container mx-auto px-4 py-6">
-          <h1 className={`text-3xl font-bold ${
-            theme === 'dark' ? 'text-white' : 'text-gray-800'
-          }`}>
-            PhishAI Training Dashboard
-          </h1>
-        </div>
-      </div>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo and Title */}
+            <div className="flex items-center">
+              <h1 className={`text-2xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-gray-800'
+              }`}>
+                PhishAI <span className="text-purple-400">Training</span>
+              </h1>
+            </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Training Module */}
-          <div className={`p-6 rounded-lg border ${
-            theme === 'dark' 
-              ? 'bg-gray-900 border-purple-500' 
-              : 'bg-white border-purple-200'
-          }`}>
-            <Shield className="w-8 h-8 text-purple-400 mb-4" />
-            <h2 className={`text-xl font-bold mb-4 ${
-              theme === 'dark' ? 'text-white' : 'text-gray-800'
-            }`}>
-              Training Scenarios
-            </h2>
-            <div className="space-y-4">
-              <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-                Start Email Training
+            {/* Navigation Links */}
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setActiveTab('training')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeTab === 'training'
+                    ? 'bg-purple-600 text-white'
+                    : theme === 'dark'
+                      ? 'text-gray-300 hover:bg-gray-800'
+                      : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Training
               </button>
-              <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-                Start Voice Training
+              <button
+                onClick={() => setActiveTab('progress')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeTab === 'progress'
+                    ? 'bg-purple-600 text-white'
+                    : theme === 'dark'
+                      ? 'text-gray-300 hover:bg-gray-800'
+                      : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Progress
               </button>
-              <button className="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-                Start Web Training
+              <button
+                onClick={() => setActiveTab('achievements')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeTab === 'achievements'
+                    ? 'bg-purple-600 text-white'
+                    : theme === 'dark'
+                      ? 'text-gray-300 hover:bg-gray-800'
+                      : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Achievements
+              </button>
+              <button
+                onClick={() => setActiveTab('settings')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeTab === 'settings'
+                    ? 'bg-purple-600 text-white'
+                    : theme === 'dark'
+                      ? 'text-gray-300 hover:bg-gray-800'
+                      : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Settings
+              </button>
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+                  theme === 'dark'
+                    ? 'bg-red-900/20 text-red-400 hover:bg-red-900/40'
+                    : 'bg-red-50 text-red-600 hover:bg-red-100'
+                }`}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
               </button>
             </div>
           </div>
-
-          {/* Progress Module */}
-          <div className={`p-6 rounded-lg border ${
-            theme === 'dark' 
-              ? 'bg-gray-900 border-purple-500' 
-              : 'bg-white border-purple-200'
-          }`}>
-            <Brain className="w-8 h-8 text-purple-400 mb-4" />
-            <h2 className={`text-xl font-bold mb-4 ${
-              theme === 'dark' ? 'text-white' : 'text-gray-800'
-            }`}>
-              Your Progress
-            </h2>
-            {/* Add progress tracking components here */}
-          </div>
-
-          {/* Resources Module */}
-          <div className={`p-6 rounded-lg border ${
-            theme === 'dark' 
-              ? 'bg-gray-900 border-purple-500' 
-              : 'bg-white border-purple-200'
-          }`}>
-            <Cloud className="w-8 h-8 text-purple-400 mb-4" />
-            <h2 className={`text-xl font-bold mb-4 ${
-              theme === 'dark' ? 'text-white' : 'text-gray-800'
-            }`}>
-              Learning Resources
-            </h2>
-            {/* Add resource links here */}
-          </div>
         </div>
+      </nav>
+
+      {/* Main Content Area */}
+      <div className="container mx-auto px-4 py-8">
+        {/* Content sections will go here */}
       </div>
     </div>
   );
