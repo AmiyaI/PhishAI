@@ -751,24 +751,49 @@ const App = () => {
           </div>
         </div>
       </div>
-    
+
     {/* Call to Action */}
     <div className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-white">Ready to Level Up Your Security?</h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Join organizations using PhishAI to train their teams and protect against 
-            sophisticated phishing attacks.
-          </p>
-          <button 
-            onClick={() => setShowAuth(true)}
-            className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
-            hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
-            Get Started <ChevronRight className="inline ml-2" />
-          </button>
+      <div className="container mx-auto px-4 text-center">
+        <h2 className={`text-3xl font-bold mb-6 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-800'  // Added light mode color
+        }`}>Ready to Level Up Your Security?</h2>
+        <p className={`mb-8 max-w-2xl mx-auto ${
+          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'  // Added light mode color
+        }`}>
+          Join organizations using PhishAI to train their teams and protect against 
+          sophisticated phishing attacks.
+        </p>
+        <button 
+          onClick={() => setShowAuth(true)}
+          className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold 
+            hover:bg-purple-700 transition-colors border border-purple-400 
+            shadow-lg shadow-purple-500/20"
+        >
+          Get Started <ChevronRight className="inline ml-2" />
+        </button>
+      </div>
+    </div>
+    
+    {/* Footer */}
+    <footer className={`${
+      theme === 'dark' 
+        ? 'bg-black border-t border-purple-500/30 text-gray-400' 
+        : 'bg-white border-t border-purple-200 text-gray-600'
+    } py-8`}>
+      <div className="container mx-auto px-4 text-center">
+        <p>© 2025 PhishAI. All rights reserved.</p>
+        <div className="mt-4">
+          <a 
+            href="https://github.com/AmiyaI/PhishAI" 
+            className="text-purple-400 hover:text-purple-300 transition-colors"
+          >
+            View on GitHub
+          </a>
         </div>
       </div>
-
+    </footer>
+    
     {/* Auth Form */}
     {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
           
