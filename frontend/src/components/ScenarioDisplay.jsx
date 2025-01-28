@@ -1,5 +1,5 @@
-import React from 'react';
-import { Phone, Globe, PlayCircle } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Phone, Globe, PlayCircle, Pause } from 'lucide-react';
 
 const ScenarioDisplay = ({ scenario, type, theme, handleAttempt }) => {
   if (!scenario) return null;
@@ -90,38 +90,73 @@ const ScenarioDisplay = ({ scenario, type, theme, handleAttempt }) => {
     </div>
   );
 
-  const renderVoiceScenario = () => (
-    <div className="text-center p-8">
-      <Phone className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-      <p className={`text-xl font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-        Incoming call from "{scenario.caller}"
-      </p>
-      <div className={`mt-6 p-6 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
-        <p className={`text-lg mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-          {scenario.script}
+  const renderVoiceScenario = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef(null);
+  
+    const handlePlayPause = () => {
+      if (audioRef.current) {
+        if (isPlaying) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+    };
+  
+    return (
+      <div className="text-center p-8">
+        <Phone className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+        <p className={`text-xl font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+          Incoming call from "{scenario.caller}"
         </p>
-        <PlayCircle className="w-12 h-12 text-purple-400 mx-auto cursor-pointer hover:text-purple-300 mt-4" />
-        <p className={`mt-2 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-          Click to play voice simulation
-        </p>
+        <div className={`mt-6 p-6 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <p className={`text-lg mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+            {scenario.script}
+          </p>
+          
+          {/* Audio Player */}
+          <div className="mt-6 flex flex-col items-center">
+            <audio 
+              ref={audioRef}
+              src={`/voiceovers/${scenario.id}.mp3`}  // Make sure this matches your file naming
+              onEnded={() => setIsPlaying(false)}
+            />
+            <button
+              onClick={handlePlayPause}
+              className="flex items-center justify-center p-4 rounded-full bg-purple-500/10 
+                hover:bg-purple-500/20 transition-colors"
+            >
+              {isPlaying ? (
+                <Pause className="w-12 h-12 text-purple-400" />
+              ) : (
+                <PlayCircle className="w-12 h-12 text-purple-400" />
+              )}
+            </button>
+            <p className={`mt-2 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+              {isPlaying ? 'Click to pause' : 'Click to play voice simulation'}
+            </p>
+          </div>
+        </div>
+        
+        <div className="mt-8 space-x-4">
+          <button 
+            onClick={() => handleAttempt(true)}
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded"
+          >
+            Mark as Scam
+          </button>
+          <button 
+            onClick={() => handleAttempt(false)}
+            className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded"
+          >
+            Mark as Legitimate
+          </button>
+        </div>
       </div>
-      
-      <div className="mt-8 space-x-4">
-        <button 
-          onClick={() => handleAttempt(true)}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded"
-        >
-          Mark as Scam
-        </button>
-        <button 
-          onClick={() => handleAttempt(false)}
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded"
-        >
-          Mark as Legitimate
-        </button>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const renderWebScenario = () => (
     <div className="space-y-4">

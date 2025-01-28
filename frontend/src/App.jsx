@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Shield, Brain, Cloud, Terminal, Server, Users, Mail, Phone, Globe, ChevronRight, PlayCircle, AlertCircle, Sun, Moon, Trophy, Book, Target, BarChart3, Award, Star, X } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Alert, AlertDescription } from './components/ui/alert';
@@ -99,65 +99,73 @@ const UpgradePrompt = ({ theme, onClose }) => (
 );
 
 // Training Module Component
-const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achievements, currentScenario }) => (
-  <div className="space-y-8">
-    {/* Level Progress */}
-    <div className="mb-6">
-      <div className="flex justify-between items-center mb-2">
-        <span className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}>
-          Level {level} Progress
-        </span>
-        <span className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
-          Score: {score}
-        </span>
-      </div>
-      <div className="h-2 bg-gray-700 rounded-full">
-        <div 
-          className="h-full bg-purple-500 rounded-full transition-all duration-500"
-          style={{ width: `${(score / 1000) * 100}%` }}
-        />
-      </div>
-    </div>
+const TrainingModule = ({ theme, level, score, activeDemo, handleAttempt, achievements, currentScenario }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
-    {/* Current Scenario */}
-    <div className={`p-6 rounded-lg border ${
-      theme === 'dark' 
-        ? 'bg-gray-900 border-purple-500' 
-        : 'bg-white border-purple-200'
-    }`}>
-      <div className="space-y-4">
-        <ScenarioDisplay 
-          scenario={currentScenario}
-          type={activeDemo}
-          theme={theme}
-          handleAttempt={handleAttempt}
-        />
-      </div>
-    </div>
-
-    {/* Achievements Section */}
-    <div className={`p-6 rounded-lg border ${
-      theme === 'dark' 
-        ? 'bg-gray-900 border-purple-500' 
-        : 'bg-white border-purple-200'
-    }`}>
-      <h3 className={`text-xl font-bold mb-4 ${
-        theme === 'dark' ? 'text-white' : 'text-gray-800'
-      }`}>
-        Achievements
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {Object.values(achievements).map(achievement => (
-          <AchievementsBadge 
-            key={achievement.id} 
-            achievement={achievement}
-            theme={theme}
+  return (
+    <div className="space-y-8">
+      {/* Level Progress */}
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className={theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}>
+            Level {level} Progress
+          </span>
+          <span className={theme === 'dark' ? 'text-white' : 'text-gray-800'}>
+            Score: {score}
+          </span>
+        </div>
+        <div className="h-2 bg-gray-700 rounded-full">
+          <div 
+            className="h-full bg-purple-500 rounded-full transition-all duration-500"
+            style={{ width: `${(score / 1000) * 100}%` }}
           />
-        ))}
+        </div>
+      </div>
+
+      {/* Current Scenario */}
+      <div className={`p-6 rounded-lg border ${
+        theme === 'dark' 
+          ? 'bg-gray-900 border-purple-500' 
+          : 'bg-white border-purple-200'
+      }`}>
+        <div className="space-y-4">
+          <ScenarioDisplay 
+            scenario={currentScenario}
+            type={activeDemo}
+            theme={theme}
+            handleAttempt={handleAttempt}
+            audioRef={audioRef}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+          />
+        </div>
+      </div>
+
+      {/* Achievements Section */}
+      <div className={`p-6 rounded-lg border ${
+        theme === 'dark' 
+          ? 'bg-gray-900 border-purple-500' 
+          : 'bg-white border-purple-200'
+      }`}>
+        <h3 className={`text-xl font-bold mb-4 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-800'
+        }`}>
+          Achievements
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Object.values(achievements).map(achievement => (
+            <AchievementsBadge 
+              key={achievement.id} 
+              achievement={achievement}
+              theme={theme}
+            />
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 
 // Main App Component (continues from Part 1)
