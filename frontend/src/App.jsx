@@ -10,6 +10,7 @@ import AuthForm from './components/AuthForm';
 import { scenarios } from './config/scenarios';
 import ScenarioDisplay from './components/ScenarioDisplay';
 import ContactForm from './components/ContactForm';
+import VideoModal from './components/VideoModal';
 
 // Achievement Badge Component
 const AchievementsBadge = ({ achievement, theme }) => (
@@ -173,7 +174,8 @@ const App = () => {
   const [alertContent, setAlertContent] = useState({ title: '', message: '' });
   const [showContactForm, setShowContactForm] = useState(false);
   const navigate = useNavigate();
-  
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
   const [completedLevels, setCompletedLevels] = useState({
     email: 0,
     voice: 0,
@@ -339,10 +341,12 @@ const App = () => {
                   hover:bg-purple-700 transition-colors border border-purple-400 shadow-lg shadow-purple-500/20">
                   Start Free Trial
                 </button>
-                <button className={`bg-transparent px-8 py-3 rounded-lg font-semibold 
-                  transition-colors border border-purple-500 ${
-                  theme === 'dark' ? 'text-purple-400 hover:bg-purple-900/30' : 'text-purple-600 hover:bg-purple-100'
-                }`}>
+                <button 
+                  onClick={() => setShowVideoModal(true)} 
+                  className={`bg-transparent px-8 py-3 rounded-lg font-semibold 
+                    transition-colors border border-purple-500 ${
+                    theme === 'dark' ? 'text-purple-400 hover:bg-purple-900/30' : 'text-purple-600 hover:bg-purple-100'
+                  }`}>
                   Watch Demo
                 </button>
               </div>
@@ -793,26 +797,32 @@ const App = () => {
         </div>
       </div>
     </footer>
-    
+
     {/* Auth Form */}
     {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
           
-          {/* Modals */}
-          {showUpgradePrompt && (
-            <UpgradePrompt 
-              theme={theme}
-              onClose={() => setShowUpgradePrompt(false)}
-            />
-          )}
-          {showContactForm && (
-            <ContactForm 
-              theme={theme}
-              onClose={() => setShowContactForm(false)}
-            />
-          )}
-        </div>
-      } 
-    />
+    {/* Modals */}
+    {showAuth && <AuthForm theme={theme} onClose={() => setShowAuth(false)} onLogin={handleLogin} />}
+        {showUpgradePrompt && (
+          <UpgradePrompt 
+            theme={theme}
+            onClose={() => setShowUpgradePrompt(false)}
+          />
+        )}
+        {showContactForm && (
+          <ContactForm 
+            theme={theme}
+            onClose={() => setShowContactForm(false)}
+          />
+        )}
+        {showVideoModal && (
+          <VideoModal 
+            theme={theme}
+            onClose={() => setShowVideoModal(false)}
+          />
+        )}
+      </div>
+    } />
     <Route 
       path="/dashboard" 
       element={
