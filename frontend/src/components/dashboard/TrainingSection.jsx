@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Mail, Phone, Globe, Shield, Trophy, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, Globe, Shield, AlertCircle } from 'lucide-react';
 import ScenarioDisplay from '../ScenarioDisplay';
-import { scenarios } from '../../config/scenarios';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const TrainingSection = ({ theme }) => {
   const [activeModule, setActiveModule] = useState(null);
   const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentScenario, setCurrentScenario] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [moduleProgress, setModuleProgress] = useState({
     email: 0,
     voice: 0,
@@ -17,7 +20,7 @@ const TrainingSection = ({ theme }) => {
       id: 'email',
       title: 'Email Training',
       icon: <Mail className="w-6 h-6" />,
-      description: 'Learn to identify phishing emails and suspicious messages',
+      description: 'Learn to identify AI-generated phishing emails',
       levelCount: 10,
       currentProgress: moduleProgress.email
     },
@@ -25,7 +28,7 @@ const TrainingSection = ({ theme }) => {
       id: 'voice',
       title: 'Voice Call Training',
       icon: <Phone className="w-6 h-6" />,
-      description: 'Recognize voice phishing attempts and scam calls',
+      description: 'Recognize AI-powered voice phishing attempts',
       levelCount: 10,
       currentProgress: moduleProgress.voice
     },
@@ -39,23 +42,69 @@ const TrainingSection = ({ theme }) => {
     }
   ];
 
-  const handleModuleSelect = (moduleId) => {
-    setActiveModule(moduleId);
-    setCurrentLevel(moduleProgress[moduleId] + 1);
+  // Function to generate new scenario
+  const generateScenario = async (moduleType, level) => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('https://gml3dcqdwk.execute-api.us-east-1.amazonaws.com/dev/scenario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: moduleType,
+          level: level,
+          previousScenarios: [], // Could track previous scenarios to ensure variety
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate scenario');
+      }
+
+      const data = await response.json();
+      setCurrentScenario(data);
+    } catch (err) {
+      setError('Failed to generate scenario. Please try again.');
+      console.error('Error generating scenario:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleScenarioComplete = (success) => {
+  const handleModuleSelect = async (moduleId) => {
+    setActiveModule(moduleId);
+    setCurrentLevel(moduleProgress[moduleId] + 1);
+    await generateScenario(moduleId, moduleProgress[moduleId] + 1);
+  };
+
+  const handleScenarioComplete = async (success) => {
     if (success) {
+      const nextLevel = Math.min(currentLevel + 1, 10);
       setModuleProgress(prev => ({
         ...prev,
         [activeModule]: Math.min(prev[activeModule] + 1, 10)
       }));
-      setCurrentLevel(prev => prev + 1);
+      setCurrentLevel(nextLevel);
+      
+      // Generate next scenario if not at max level
+      if (nextLevel <= 10) {
+        await generateScenario(activeModule, nextLevel);
+      }
     }
   };
 
   return (
     <div className="space-y-8">
+      {error && (
+        <Alert variant="destructive" className={theme === 'dark' ? 'bg-red-900/50' : 'bg-red-50'}>
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
       {/* Module Selection */}
       {!activeModule ? (
         <div className="grid md:grid-cols-3 gap-6">
@@ -69,6 +118,7 @@ const TrainingSection = ({ theme }) => {
               }`}
               onClick={() => handleModuleSelect(module.id)}
             >
+              {/* Module card content remains the same */}
               <div className="flex items-center mb-4">
                 <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
                   {module.icon}
@@ -113,7 +163,7 @@ const TrainingSection = ({ theme }) => {
         </div>
       ) : (
         <div className="space-y-6">
-          {/* Active Module Header */}
+          {/* Active Module Content */}
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <button
@@ -132,13 +182,6 @@ const TrainingSection = ({ theme }) => {
                 {modules.find(m => m.id === activeModule)?.title} - Level {currentLevel}
               </h2>
             </div>
-            <div className={`px-4 py-2 rounded-lg ${
-              theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'
-            }`}>
-              <span className={theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}>
-                Progress: {moduleProgress[activeModule]}/10
-              </span>
-            </div>
           </div>
 
           {/* Scenario Display */}
@@ -147,12 +190,18 @@ const TrainingSection = ({ theme }) => {
               ? 'bg-gray-900 border-purple-500'
               : 'bg-white border-purple-200'
           }`}>
-            <ScenarioDisplay
-              scenario={scenarios[activeModule][currentLevel - 1]}
-              type={activeModule}
-              theme={theme}
-              handleAttempt={(isCorrect) => handleScenarioComplete(isCorrect)}
-            />
+            {isLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500" />
+              </div>
+            ) : currentScenario ? (
+              <ScenarioDisplay
+                scenario={currentScenario}
+                type={activeModule}
+                theme={theme}
+                handleAttempt={handleScenarioComplete}
+              />
+            ) : null}
           </div>
         </div>
       )}
