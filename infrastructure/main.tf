@@ -56,17 +56,17 @@ resource "aws_iam_policy" "lambda_custom_policy" {
         Resource : "*"
       },
       {
-      Effect = "Allow"
-      Action = [
-        "bedrock:InvokeModel",
-        "bedrock:ListFoundationModels",
-        "bedrock:ListCustomModels",
-        "bedrock:InvokeModelWithResponseStream"
-      ]
-      Resource = [
-        "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1",
-        "arn:aws:bedrock:us-east-1::foundation-model/*"
-      ]
+        Effect = "Allow"
+        Action = [
+          "bedrock:InvokeModel",
+          "bedrock:ListFoundationModels",
+          "bedrock:ListCustomModels",
+          "bedrock:InvokeModelWithResponseStream"
+        ]
+        Resource = [
+          "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1",
+          "arn:aws:bedrock:us-east-1::foundation-model/*"
+        ]
       },
       {
         Effect : "Allow",

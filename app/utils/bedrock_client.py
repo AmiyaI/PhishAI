@@ -10,7 +10,7 @@ class BedrockClient:
     def __init__(self):
         """Initialize Bedrock client with AWS credentials"""
         self.client = boto3.client('bedrock-runtime')
-        self.model_id = "anthropic.claude-3-sonnet-20240229-v1:0"
+        self.model_id = "anthropic.claude-3-5-sonnet-20241022-v2:0"
         
     def generate_text(self, prompt: str) -> dict:
         """
@@ -21,14 +21,19 @@ class BedrockClient:
             request_body = {
                 "anthropic_version": "bedrock-2023-05-31",
                 "max_tokens": 1000,
+                "temperature": 1,
+                "top_p": 0.999,
+                "top_k": 250,
+                "stop_sequences": [],
                 "messages": [
                     {
-                        "role": "system",
-                        "content": "You are an expert in creating realistic phishing scenarios. Generate highly convincing but educational phishing content that will help users learn to identify threats."
-                    },
-                    {
                         "role": "user",
-                        "content": prompt
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": prompt
+                            }
+                        ]
                     }
                 ]
             }
@@ -36,6 +41,8 @@ class BedrockClient:
             # Invoke the model
             response = self.client.invoke_model(
                 modelId=self.model_id,
+                contentType="application/json",
+                accept="application/json",
                 body=json.dumps(request_body)
             )
             
